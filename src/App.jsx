@@ -8,6 +8,11 @@ import {
   ArrowRight,
   Globe2,
   Building2,
+  Radar,
+  Plane,
+  Cpu,
+  Target,
+  CheckCircle2,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -19,13 +24,36 @@ const capabilities = [
   },
   {
     icon: Truck,
-    title: "Radar, Air Defense & Platform Sourcing",
-    text: "Focused procurement support for radar systems, air-defense assets, armored platforms, aircraft-related equipment, legacy components, and difficult-to-document foreign materiel.",
+    title: "Platform & Equipment Acquisition",
+    text: "Focused procurement support for radar systems, air-defense assets, armored platforms, aircraft-related equipment, upgraded legacy systems, and difficult-to-document foreign materiel.",
   },
   {
     icon: FileCheck2,
-    title: "Compliance-First Acquisition Support",
-    text: "All activity is structured around lawful U.S. government requirements, documentation, end-use controls, sanctions compliance, export-control rules, and authorized procurement channels.",
+    title: "Compliance-Driven Execution",
+    text: "All activity is structured around lawful U.S. government requirements, documentation, end-use controls, sanctions compliance, export-control rules, and authorized acquisition channels.",
+  },
+];
+
+const systems = [
+  {
+    icon: Radar,
+    title: "Radar & Air Defense Systems",
+    text: "Procurement support for surveillance radars, target-acquisition systems, air-defense-related equipment, and supporting components.",
+  },
+  {
+    icon: Target,
+    title: "Armored & Ground Platforms",
+    text: "Support for armored vehicles, legacy tracked platforms, subsystems, and related foreign-origin equipment for evaluation and exploitation needs.",
+  },
+  {
+    icon: Plane,
+    title: "Aircraft & Aviation Systems",
+    text: "Focused sourcing support for foreign-origin aircraft-related equipment, helicopter systems, upgraded legacy airframes, and supporting hardware.",
+  },
+  {
+    icon: Cpu,
+    title: "Electronic / Technical Materiel",
+    text: "Assistance with hard-to-source technical equipment, subsystems, and specialized components relevant to testing, analysis, and R&D programs.",
   },
 ];
 
@@ -40,21 +68,31 @@ const categories = [
   "Custom R&D Sourcing Requests",
 ];
 
+const process = [
+  "Requirement Review",
+  "Source Identification",
+  "Availability Verification",
+  "Documentation & Compliance Screening",
+  "Procurement Coordination",
+  "Delivery Support",
+];
+
 export default function App() {
   return (
     <main className="site-shell">
       <section className="hero-section">
         <div className="hero-bg" />
+        <div className="hero-grid-overlay" />
 
         <div className="container hero-inner">
           <header className="top-nav">
             <div className="brand-wrap">
               <div className="brand-icon">
-                <ShieldCheck size={26} />
+                <ShieldCheck size={22} />
               </div>
               <div>
                 <p className="brand-name">UAM</p>
-                <p className="brand-subtitle">Defense Procurement</p>
+                <p className="brand-subtitle">DEFENSE PROCUREMENT</p>
               </div>
             </div>
 
@@ -73,7 +111,7 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <p className="eyebrow">
-                Specialized Procurement for U.S. Department of Defense R&D
+                Specialized Procurement for U.S. Department of Defense R&amp;D
               </p>
 
               <h1>
@@ -90,7 +128,7 @@ export default function App() {
 
               <div className="button-row">
                 <a className="primary-button" href="#contact">
-                  Contact Procurement <ArrowRight size={17} />
+                  Contact Procurement <ArrowRight size={16} />
                 </a>
                 <a className="secondary-button" href="#capabilities">
                   View Capabilities
@@ -113,11 +151,7 @@ export default function App() {
                   text="United Acquisition Management, Inc."
                 />
 
-                <InfoRow
-                  icon={Globe2}
-                  title="Website"
-                  text="uam-inc.com"
-                />
+                <InfoRow icon={Globe2} title="Website" text="uam-inc.com" />
 
                 <InfoRow
                   icon={ShieldCheck}
@@ -135,9 +169,10 @@ export default function App() {
           <p className="section-label">Capabilities</p>
           <h2>Discreet procurement support for difficult foreign materiel.</h2>
           <p>
-            UAM is not a retail catalog or commodity reseller. The company is
-            positioned to support government and prime-contractor requirements
-            where access, documentation, discretion, and lawful sourcing matter.
+            UAM supports government and contractor requirements where access,
+            documentation, discretion, and lawful sourcing matter more than
+            volume. The company is positioned as a specialist procurement firm
+            for authorized defense research and evaluation activity.
           </p>
         </div>
 
@@ -148,7 +183,7 @@ export default function App() {
             return (
               <article className="capability-card" key={item.title}>
                 <div className="capability-icon">
-                  <Icon size={26} />
+                  <Icon size={24} />
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -158,17 +193,44 @@ export default function App() {
         </div>
       </section>
 
-      <section id="systems" className="band-section">
+      <section id="systems" className="container section">
+        <div className="section-head">
+          <p className="section-label">Systems of Interest</p>
+          <h2>Focused on scarce systems, not open-market equipment.</h2>
+          <p>
+            UAM supports specialized sourcing requests involving radar systems,
+            air-defense platforms, armored vehicles, aircraft-related systems,
+            upgraded legacy platforms, and difficult foreign-origin materiel for
+            authorized testing, analysis, and procurement requirements.
+          </p>
+        </div>
+
+        <div className="systems-grid">
+          {systems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article className="system-card" key={item.title}>
+                <div className="system-icon">
+                  <Icon size={22} />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="band-section">
         <div className="container split-grid">
           <div>
-            <p className="section-label">Systems of Interest</p>
-            <h2>Focused on scarce systems, not open-market equipment.</h2>
+            <p className="section-label">Procurement Categories</p>
+            <h2>Aligned to real-world defense sourcing requirements.</h2>
             <p>
-              UAM supports specialized sourcing requests involving radar
-              systems, air-defense platforms, armored vehicles, aircraft-related
-              systems, electronic warfare equipment, and upgraded legacy
-              platforms of foreign origin. Public-facing information is kept
-              category-based to protect the sensitivity of procurement activity.
+              Public-facing information is intentionally category-based. UAM’s
+              role is to support qualified procurement activity with discretion,
+              supplier coordination, and compliance-minded execution.
             </p>
           </div>
 
@@ -197,7 +259,7 @@ export default function App() {
           </div>
 
           <div className="todo-card">
-            <p className="todo-title">Contracting Information</p>
+            <p className="todo-title">Company Information</p>
             <ul>
               <li>United Acquisition Management, Inc.</li>
               <li>Florida Profit Corporation</li>
@@ -212,16 +274,22 @@ export default function App() {
 
       <section className="container section">
         <div className="section-head">
-          <p className="section-label">Procurement Approach</p>
-          <h2>Access, verification, and compliance before transaction volume.</h2>
+          <p className="section-label">Procurement Process</p>
+          <h2>Structured, disciplined, and requirement-driven.</h2>
           <p>
-            The company’s value is in locating difficult systems, verifying
-            availability, coordinating supplier communication, and supporting
-            the documentation standards expected in government-facing defense
-            procurement. UAM’s role is procurement support for authorized
-            research and evaluation needs — not public retail sale of military
-            equipment.
+            UAM’s value lies in identifying difficult supply paths, validating
+            availability, coordinating procurement activity, and supporting the
+            documentation standards expected in defense-facing sourcing.
           </p>
+        </div>
+
+        <div className="process-grid">
+          {process.map((step) => (
+            <div className="process-card" key={step}>
+              <CheckCircle2 size={18} />
+              <span>{step}</span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -239,10 +307,10 @@ export default function App() {
 
         <div className="contact-links">
           <a href="mailto:Dan.Zugrav@uam-inc.com">
-            <Mail size={21} /> Dan.Zugrav@uam-inc.com
+            <Mail size={20} /> Dan.Zugrav@uam-inc.com
           </a>
           <a href="tel:+15618019030">
-            <Phone size={21} /> +1 (561) 801-9030
+            <Phone size={20} /> +1 (561) 801-9030
           </a>
         </div>
       </section>
@@ -259,7 +327,7 @@ export default function App() {
 function InfoRow({ icon: Icon, title, text }) {
   return (
     <div className="info-row">
-      <Icon size={21} />
+      <Icon size={18} />
       <div>
         <p>{title}</p>
         <span>{text}</span>
