@@ -115,7 +115,7 @@ export default function App() {
               </p>
 
               <h1>
-                Foreign systems sourcing for research, testing, and evaluation.
+                Foreign materiel procurement for DOD research and evaluation.
               </h1>
 
               <p className="hero-copy">
