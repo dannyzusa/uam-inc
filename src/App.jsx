@@ -12,6 +12,8 @@ import {
   Cpu,
   Target,
   CheckCircle2,
+  Layers,
+  LockKeyhole,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -37,34 +39,42 @@ const systems = [
   {
     icon: Radar,
     title: "Radar Systems",
-    text: "Surveillance radars, target-acquisition systems, air-defense radars, radar vehicles, assemblies, and supporting components.",
+    subtitle: "Surveillance & acquisition systems",
+    image: "/images/system-radar.jpg",
+    text: "Radar vehicles, surveillance radars, target-acquisition systems, air-defense radars, assemblies, and supporting components.",
   },
   {
     icon: Target,
-    title: "Ground & Armored Platforms",
+    title: "Armored Platforms",
+    subtitle: "Tracked and wheeled systems",
+    image: "/images/system-armor.jpg",
     text: "Foreign-origin armored platforms, tracked vehicles, legacy systems, upgraded variants, and related platform components.",
   },
   {
     icon: Plane,
     title: "Aircraft & Helicopter Systems",
-    text: "Aircraft-related equipment, upgraded legacy airframes, helicopter systems, avionics-related components, and support materiel.",
+    subtitle: "Upgraded legacy airframes",
+    image: "/images/system-aircraft.jpg",
+    text: "Aircraft-related equipment, helicopter systems, upgraded legacy airframes, avionics-related components, and support materiel.",
   },
   {
     icon: Cpu,
     title: "Electronic / Technical Materiel",
+    subtitle: "EW, sensors, components",
+    image: "/images/system-electronics.jpg",
     text: "Technical subsystems, electronic warfare-related equipment, detection systems, and specialized components for R&D use cases.",
   },
 ];
 
 const categories = [
-  "Radar Systems & Components",
-  "Air Defense Systems",
-  "Armored Vehicles & Components",
-  "Aircraft & Helicopter Systems",
-  "Electronic Warfare Related Equipment",
-  "Legacy Foreign-Origin Platforms",
-  "Russian-Origin Defense Equipment",
-  "Custom R&D Sourcing Requests",
+  "S-300 / legacy air-defense related systems",
+  "Radar systems and components",
+  "T-80 / T-90 family platform support",
+  "BMP-3 and armored vehicle components",
+  "Su-27 / upgraded aircraft-related equipment",
+  "Mi-24 / Mi-35 Hind-family systems",
+  "Electronic warfare and sensor equipment",
+  "Custom foreign materiel sourcing requests",
 ];
 
 const process = [
@@ -127,8 +137,8 @@ export default function App() {
                 <a className="primary-button" href="#contact">
                   Contact Procurement <ArrowRight size={16} />
                 </a>
-                <a className="secondary-button" href="#capabilities">
-                  View Capabilities
+                <a className="secondary-button" href="#systems">
+                  View Systems of Interest
                 </a>
               </div>
             </motion.div>
@@ -137,23 +147,35 @@ export default function App() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.08 }}
-              className="profile-card"
+              className="hero-panel"
             >
-              <p className="card-label">Company Profile</p>
+              <div className="hero-visual">
+                <img
+                  src="/images/hero-radar.jpg"
+                  alt="Foreign-origin radar system for research and evaluation"
+                />
+                <div className="hero-visual-label">
+                  Foreign Systems / R&amp;D Support
+                </div>
+              </div>
 
-              <InfoRow
-                icon={Building2}
-                title="Company"
-                text="United Acquisition Management, Inc."
-              />
+              <div className="profile-card">
+                <p className="card-label">Company Profile</p>
 
-              <InfoRow icon={Globe2} title="Website" text="uam-inc.com" />
+                <InfoRow
+                  icon={Building2}
+                  title="Company"
+                  text="United Acquisition Management, Inc."
+                />
 
-              <InfoRow
-                icon={ShieldCheck}
-                title="Primary Focus"
-                text="Foreign-origin defense systems procurement for authorized U.S. government R&D."
-              />
+                <InfoRow icon={Globe2} title="Website" text="uam-inc.com" />
+
+                <InfoRow
+                  icon={ShieldCheck}
+                  title="Primary Focus"
+                  text="Foreign-origin defense systems procurement for authorized U.S. government R&D."
+                />
+              </div>
             </motion.aside>
           </div>
         </div>
@@ -187,29 +209,36 @@ export default function App() {
         </div>
       </section>
 
-      <section id="systems" className="band-section">
-        <div className="container split-grid">
-          <div>
+      <section id="systems" className="systems-section">
+        <div className="container">
+          <div className="section-head systems-head">
             <p className="section-label">Systems of Interest</p>
-            <h2>Focused on scarce systems, not open-market equipment.</h2>
+            <h2>Foreign-origin systems and technologies we support.</h2>
             <p>
-              Public-facing information is intentionally category-based. UAM’s
-              role is to support qualified procurement activity involving
-              foreign-origin systems and components for authorized research,
-              testing, evaluation, training, and exploitation requirements.
+              This section is intentionally category-based. Specific systems,
+              availability, documentation, and procurement pathways are handled
+              directly with authorized parties.
             </p>
           </div>
 
-          <div className="systems-list">
+          <div className="systems-gallery">
             {systems.map((item) => {
               const Icon = item.icon;
 
               return (
-                <article className="system-row" key={item.title}>
-                  <div className="system-icon">
-                    <Icon size={21} />
+                <article className="system-card" key={item.title}>
+                  <div className="system-image">
+                    <img src={item.image} alt={item.title} />
                   </div>
-                  <div>
+
+                  <div className="system-body">
+                    <div className="system-topline">
+                      <div className="system-icon">
+                        <Icon size={19} />
+                      </div>
+                      <span>{item.subtitle}</span>
+                    </div>
+
                     <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </div>
@@ -217,27 +246,26 @@ export default function App() {
               );
             })}
           </div>
-        </div>
-      </section>
 
-      <section className="container section">
-        <div className="section-head">
-          <p className="section-label">Procurement Categories</p>
-          <h2>Aligned to real-world defense sourcing requirements.</h2>
-          <p>
-            UAM handles specialized sourcing requests across foreign-origin
-            systems, legacy platforms, radar-related equipment, and technical
-            materiel where availability and documentation require focused
-            procurement experience.
-          </p>
-        </div>
-
-        <div className="category-grid">
-          {categories.map((category) => (
-            <div className="category-card" key={category}>
-              {category}
+          <div className="category-panel">
+            <div>
+              <p className="section-label">Procurement Categories</p>
+              <h2>Aligned to real-world defense sourcing requirements.</h2>
+              <p>
+                UAM supports qualified sourcing requests across foreign-origin
+                platforms, radar-related equipment, legacy systems, aircraft
+                support equipment, and technical materiel.
+              </p>
             </div>
-          ))}
+
+            <div className="category-grid">
+              {categories.map((category) => (
+                <div className="category-card" key={category}>
+                  {category}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -288,6 +316,43 @@ export default function App() {
               <span>{step}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mission-band">
+        <div className="container mission-inner">
+          <div className="mission-item">
+            <Layers size={22} />
+            <div>
+              <h3>Hard-to-procure systems</h3>
+              <p>
+                Access to foreign-origin systems, components, and technologies
+                with limited or restricted availability.
+              </p>
+            </div>
+          </div>
+
+          <div className="mission-item">
+            <LockKeyhole size={22} />
+            <div>
+              <h3>Discreet and professional</h3>
+              <p>
+                Procurement support conducted with discretion, security, and
+                professional communication.
+              </p>
+            </div>
+          </div>
+
+          <div className="mission-item">
+            <ShieldCheck size={22} />
+            <div>
+              <h3>Authorized use only</h3>
+              <p>
+                All inquiries and activity must relate to authorized government
+                or contractor research and evaluation requirements.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
