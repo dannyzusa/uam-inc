@@ -1,8 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/capabilities",
+      "destination": "/"
+    },
+    {
+      "source": "/systems",
+      "destination": "/"
+    },
+    {
+      "source": "/contracting",
+      "destination": "/"
+    },
+    {
+      "source": "/contact",
+      "destination": "/"
     }
   ]
 }
