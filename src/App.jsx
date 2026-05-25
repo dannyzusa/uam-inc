@@ -12,6 +12,7 @@ import {
   MapPin,
   Send,
   X,
+  PackageCheck,
 } from "lucide-react";
 
 const navItems = [
@@ -48,10 +49,34 @@ const systems = [
     image: "/images/system-radar.jpg",
   },
   {
+    title: "Nebo / P-Series Radars",
+    subtitle: "Mobile Radar Systems",
+    category: "Radar Systems",
+    image: "/images/system-radar-nebo.jpg",
+  },
+  {
+    title: "P-18 Radar Family",
+    subtitle: "Legacy / Modernized Radar Systems",
+    category: "Radar Systems",
+    image: "/images/system-radar-p18.jpg",
+  },
+  {
     title: "Air Defense Systems",
     subtitle: "SAM Systems & Components",
     category: "Air Defense",
     image: "/images/system-airdefense.jpg",
+  },
+  {
+    title: "Buk Family",
+    subtitle: "Air Defense Platforms",
+    category: "Air Defense",
+    image: "/images/system-airdefense-buk.jpg",
+  },
+  {
+    title: "Tor / Short-Range AD",
+    subtitle: "Mobile Air Defense Systems",
+    category: "Air Defense",
+    image: "/images/system-airdefense-tor.jpg",
   },
   {
     title: "T-80 / T-90 Series",
@@ -60,10 +85,22 @@ const systems = [
     image: "/images/system-armor.jpg",
   },
   {
+    title: "T-90 Series",
+    subtitle: "Main Battle Tank Platforms",
+    category: "Armored Platforms",
+    image: "/images/system-armor-t90.jpg",
+  },
+  {
     title: "BMP-3",
     subtitle: "Infantry Fighting Vehicle",
     category: "Armored Platforms",
     image: "/images/system-bmp3.jpg",
+  },
+  {
+    title: "BTR / APC Platforms",
+    subtitle: "Armored Personnel Carriers",
+    category: "Armored Platforms",
+    image: "/images/system-armor-btr.jpg",
   },
   {
     title: "Su-27 Family",
@@ -72,10 +109,22 @@ const systems = [
     image: "/images/system-aircraft.jpg",
   },
   {
+    title: "MiG-29 Family",
+    subtitle: "Aircraft Platforms & Systems",
+    category: "Aircraft / Helicopters",
+    image: "/images/system-aircraft-mig29.jpg",
+  },
+  {
     title: "Mi-24 / Mi-35",
     subtitle: "Hind-Series Helicopters",
     category: "Aircraft / Helicopters",
     image: "/images/system-hind.jpg",
+  },
+  {
+    title: "Aircraft Engines & Radar",
+    subtitle: "Aviation Support Components",
+    category: "Aircraft / Helicopters",
+    image: "/images/system-aircraft-engine.jpg",
   },
   {
     title: "Electronic Warfare Systems",
@@ -84,10 +133,10 @@ const systems = [
     image: "/images/system-ew.jpg",
   },
   {
-    title: "Components & Spares",
-    subtitle: "Critical Parts & Subsystems",
-    category: "Components & Spares",
-    image: "/images/system-components.jpg",
+    title: "Radar Electronics",
+    subtitle: "Control, Sensor & Signal Systems",
+    category: "Electronics",
+    image: "/images/system-electronics.jpg",
   },
   {
     title: "Airlogix GOR",
@@ -148,6 +197,16 @@ const tabs = [
   "Electronics",
   "Components & Spares",
   "Drones / UAS",
+];
+
+const componentSpares = [
+  "4-year ZIP-kits: 9A33BM3 fighting vehicle",
+  "4-year ZIP-kits: 1S91M2 system",
+  "Radar systems: P-11, P-18, P-19",
+  "Aircraft engines and radar systems: Su-27, MiG-29",
+  "Helicopter engines and components: Mi-24",
+  "Command, control, and communication components",
+  "System spares and blocks for former Soviet-Bloc systems",
 ];
 
 const process = [
@@ -261,7 +320,7 @@ function Header({ page, navigate, openInquiry }) {
 
 function HomePage({ navigate, openInquiry }) {
   return (
-    <section className="page-frame home-frame compact-landing">
+    <section className="page-frame home-frame">
       <div className="home-main-grid">
         <div className="hero-copy-block">
           <p className="gold-kicker">
@@ -365,6 +424,9 @@ function SystemsPage() {
       ? systems
       : systems.filter((item) => item.category === activeTab);
 
+  const showComponents =
+    activeTab === "All Categories" || activeTab === "Components & Spares";
+
   return (
     <section className="page-frame systems-page">
       <div className="page-heading compact">
@@ -402,6 +464,8 @@ function SystemsPage() {
             </div>
           </article>
         ))}
+
+        {showComponents && <ComponentsCard />}
       </div>
 
       <p className="systems-note">
@@ -409,6 +473,25 @@ function SystemsPage() {
         capabilities are discussed only with authorized parties.
       </p>
     </section>
+  );
+}
+
+function ComponentsCard() {
+  return (
+    <article className="components-card">
+      <div className="components-card-top">
+        <PackageCheck size={30} />
+        <span>Components & Spares</span>
+      </div>
+
+      <h3>ZIP kits and critical subsystem support</h3>
+
+      <ul>
+        {componentSpares.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
