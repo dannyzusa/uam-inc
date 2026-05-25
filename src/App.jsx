@@ -4,9 +4,6 @@ import {
   FileCheck2,
   Mail,
   Phone,
-  ArrowRight,
-  Globe2,
-  Building2,
   Radar,
   Target,
   CheckCircle2,
@@ -51,6 +48,12 @@ const systems = [
     image: "/images/system-radar.jpg",
   },
   {
+    title: "Air Defense Systems",
+    subtitle: "SAM Systems & Components",
+    category: "Air Defense",
+    image: "/images/system-airdefense.jpg",
+  },
+  {
     title: "T-80 / T-90 Series",
     subtitle: "Main Battle Tanks",
     category: "Armored Platforms",
@@ -75,12 +78,6 @@ const systems = [
     image: "/images/system-hind.jpg",
   },
   {
-    title: "Air Defense Systems",
-    subtitle: "SAM Systems & Components",
-    category: "Air Defense",
-    image: "/images/system-airdefense.jpg",
-  },
-  {
     title: "Electronic Warfare Systems",
     subtitle: "EW Equipment & Components",
     category: "Electronics",
@@ -92,6 +89,30 @@ const systems = [
     category: "Components & Spares",
     image: "/images/system-components.jpg",
   },
+  {
+    title: "Airlogix GOR",
+    subtitle: "Fixed-Wing Reconnaissance UAS",
+    category: "Drones / UAS",
+    image: "/images/system-drone-gor.jpg",
+  },
+  {
+    title: "Ukrspecsystems Shark",
+    subtitle: "Mid-Range ISR Platform",
+    category: "Drones / UAS",
+    image: "/images/system-drone-shark.jpg",
+  },
+  {
+    title: "Ukrspecsystems PD-2",
+    subtitle: "Long-Range / VTOL UAS",
+    category: "Drones / UAS",
+    image: "/images/system-drone-pd2.jpg",
+  },
+  {
+    title: "Athlon Avia Furia",
+    subtitle: "Tactical Reconnaissance UAV",
+    category: "Drones / UAS",
+    image: "/images/system-drone-furia.jpg",
+  },
 ];
 
 const tabs = [
@@ -102,6 +123,7 @@ const tabs = [
   "Aircraft / Helicopters",
   "Electronics",
   "Components & Spares",
+  "Drones / UAS",
 ];
 
 const process = [
@@ -118,6 +140,11 @@ function getInitialPath() {
   return window.location.pathname || "/";
 }
 
+function normalizePath(path) {
+  const allowed = ["/", "/capabilities", "/systems", "/contracting", "/contact"];
+  return allowed.includes(path) ? path : "/";
+}
+
 export default function App() {
   const [path, setPath] = React.useState(getInitialPath());
   const [showInquiryForm, setShowInquiryForm] = React.useState(false);
@@ -129,8 +156,13 @@ export default function App() {
   }, []);
 
   const navigate = (nextPath) => {
-    window.history.pushState({}, "", nextPath);
-    setPath(nextPath);
+    const cleanPath = normalizePath(nextPath);
+
+    if (cleanPath !== path) {
+      window.history.pushState({}, "", cleanPath);
+      setPath(cleanPath);
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -144,7 +176,13 @@ export default function App() {
         openInquiry={() => setShowInquiryForm(true)}
       />
 
-      {page === "/" && <HomePage navigate={navigate} />}
+      {page === "/" && (
+        <HomePage
+          navigate={navigate}
+          openInquiry={() => setShowInquiryForm(true)}
+        />
+      )}
+
       {page === "/capabilities" && <CapabilitiesPage />}
       {page === "/systems" && <SystemsPage />}
       {page === "/contracting" && <ContractingPage />}
@@ -159,11 +197,6 @@ export default function App() {
       )}
     </main>
   );
-}
-
-function normalizePath(path) {
-  const allowed = ["/", "/capabilities", "/systems", "/contracting", "/contact"];
-  return allowed.includes(path) ? path : "/";
 }
 
 function Header({ page, navigate, openInquiry }) {
@@ -200,7 +233,7 @@ function Header({ page, navigate, openInquiry }) {
   );
 }
 
-function HomePage({ navigate }) {
+function HomePage({ navigate, openInquiry }) {
   return (
     <section className="page-frame home-frame compact-landing">
       <div className="home-main-grid hero-with-image">
@@ -220,7 +253,7 @@ function HomePage({ navigate }) {
           </p>
 
           <div className="hero-actions">
-            <button className="gold-button" onClick={() => navigate("/contact")}>
+            <button className="gold-button" onClick={openInquiry}>
               Contact Procurement
             </button>
 
@@ -240,7 +273,9 @@ function HomePage({ navigate }) {
           />
           <div className="hero-image-overlay">
             <span>Foreign Systems / R&amp;D Support</span>
-            <strong>Authorized sourcing support for defense evaluation requirements.</strong>
+            <strong>
+              Authorized sourcing support for defense evaluation requirements.
+            </strong>
           </div>
         </aside>
       </div>
@@ -334,6 +369,7 @@ function SystemsPage() {
         {tabs.map((tab) => (
           <button
             key={tab}
+            type="button"
             className={activeTab === tab ? "active" : ""}
             onClick={() => setActiveTab(tab)}
           >
@@ -468,7 +504,11 @@ function ContactCard({ icon: Icon, title, text, href }) {
   );
 
   if (href) {
-    return <a className="contact-card-clean" href={href}>{content}</a>;
+    return (
+      <a className="contact-card-clean" href={href}>
+        {content}
+      </a>
+    );
   }
 
   return <div className="contact-card-clean">{content}</div>;
