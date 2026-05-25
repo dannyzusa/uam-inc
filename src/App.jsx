@@ -218,6 +218,7 @@ function Header({ page, navigate, openInquiry }) {
         {navItems.map((item) => (
           <button
             key={item.path}
+            type="button"
             className={page === item.path ? "active" : ""}
             onClick={() => navigate(item.path)}
           >
@@ -226,7 +227,7 @@ function Header({ page, navigate, openInquiry }) {
         ))}
       </nav>
 
-      <button className="nav-cta" onClick={openInquiry}>
+      <button className="nav-cta" type="button" onClick={openInquiry}>
         Contact UAM
       </button>
     </header>
@@ -236,7 +237,7 @@ function Header({ page, navigate, openInquiry }) {
 function HomePage({ navigate, openInquiry }) {
   return (
     <section className="page-frame home-frame compact-landing">
-      <div className="home-main-grid hero-with-image">
+      <div className="home-main-grid">
         <div className="hero-copy-block">
           <p className="gold-kicker">
             Specialized Procurement for U.S. Department of Defense
@@ -253,31 +254,19 @@ function HomePage({ navigate, openInquiry }) {
           </p>
 
           <div className="hero-actions">
-            <button className="gold-button" onClick={openInquiry}>
+            <button className="gold-button" type="button" onClick={openInquiry}>
               Contact Procurement
             </button>
 
             <button
               className="outline-button"
+              type="button"
               onClick={() => navigate("/capabilities")}
             >
               Our Capabilities
             </button>
           </div>
         </div>
-
-        <aside className="hero-image-panel">
-          <img
-            src="/images/hero-radar.jpg"
-            alt="Foreign-origin radar system in hangar"
-          />
-          <div className="hero-image-overlay">
-            <span>Foreign Systems / R&amp;D Support</span>
-            <strong>
-              Authorized sourcing support for defense evaluation requirements.
-            </strong>
-          </div>
-        </aside>
       </div>
 
       <div className="home-capability-strip">
@@ -440,7 +429,7 @@ function ContractingPage() {
 
 function ContactPage({ openInquiry }) {
   return (
-    <section className="page-frame content-page contact-page clean-contact">
+    <section className="page-frame content-page contact-page">
       <div className="page-heading contact-heading">
         <p className="gold-kicker">Contact</p>
 
@@ -484,7 +473,7 @@ function ContactPage({ openInquiry }) {
       </div>
 
       <div className="contact-form-cta">
-        <button className="gold-button" onClick={openInquiry}>
+        <button className="gold-button" type="button" onClick={openInquiry}>
           Open Procurement Inquiry Form
         </button>
       </div>
@@ -542,7 +531,7 @@ ${message}`
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true">
       <div className="inquiry-modal">
-        <button className="modal-close" onClick={close} aria-label="Close form">
+        <button className="modal-close" type="button" onClick={close} aria-label="Close form">
           <X size={22} />
         </button>
 
