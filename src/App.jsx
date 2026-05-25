@@ -15,6 +15,10 @@ import {
   Home,
   BriefcaseBusiness,
   ClipboardCheck,
+  MapPin,
+  Send,
+  User,
+  Users,
 } from "lucide-react";
 
 const navItems = [
@@ -95,19 +99,19 @@ const siteStructure = [
   {
     icon: ShieldCheck,
     title: "Capabilities",
-    text: "Our procurement capabilities and approach",
+    text: "Procurement capabilities and approach",
     path: "/capabilities",
   },
   {
     icon: Target,
     title: "Systems of Interest",
-    text: "Foreign-origin systems and technologies we support",
+    text: "Foreign-origin systems and technologies",
     path: "/systems",
   },
   {
     icon: ClipboardCheck,
     title: "Compliance / Contracting",
-    text: "Government contracting, compliance, and legal framework",
+    text: "Government contracting and compliance",
     path: "/contracting",
   },
   {
@@ -206,97 +210,77 @@ function Header({ page, navigate }) {
 
 function HomePage({ navigate }) {
   return (
-    <>
-      <section className="page-frame home-frame">
-        <div className="home-content">
-          <div className="hero-copy-block">
-            <p className="gold-kicker">
-              Specialized Procurement for U.S. Department of Defense
-            </p>
+    <section className="page-frame home-frame compact-landing">
+      <div className="home-main-grid">
+        <div className="hero-copy-block">
+          <p className="gold-kicker">
+            Specialized Procurement for U.S. Department of Defense
+          </p>
 
-            <h1>
-              Foreign materiel procurement for DOD research and evaluation.
-            </h1>
+          <h1>Foreign materiel procurement for DOD research and evaluation.</h1>
 
-            <p>
-              United Acquisition Management, Inc. is a specialized procurement
-              firm sourcing hard-to-procure foreign-origin military systems,
-              components, and technologies for authorized U.S. Department of
-              Defense research, development, testing, evaluation, and
-              exploitation programs.
-            </p>
+          <p>
+            United Acquisition Management, Inc. is a specialized procurement
+            firm sourcing hard-to-procure foreign-origin military systems,
+            components, and technologies for authorized U.S. Department of
+            Defense research, development, testing, evaluation, and exploitation
+            programs.
+          </p>
 
-            <div className="hero-actions">
-              <button
-                className="gold-button"
-                onClick={() => navigate("/contact")}
-              >
-                Contact Procurement
-              </button>
+          <div className="hero-actions">
+            <button className="gold-button" onClick={() => navigate("/contact")}>
+              Contact Procurement
+            </button>
 
-              <button
-                className="outline-button"
-                onClick={() => navigate("/capabilities")}
-              >
-                Our Capabilities
-              </button>
-            </div>
-          </div>
-
-          <div className="radar-panel" aria-hidden="true">
-            <div className="radar-globe">
-              <span className="radar-dot dot-one" />
-              <span className="radar-dot dot-two" />
-              <span className="radar-sweep" />
-            </div>
+            <button
+              className="outline-button"
+              onClick={() => navigate("/capabilities")}
+            >
+              Our Capabilities
+            </button>
           </div>
         </div>
 
-        <div className="home-capability-strip">
-          {capabilities.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article key={item.title} className="strip-card">
-                <Icon size={34} />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="structure-section">
-        <div className="section-intro">
+        <aside className="site-map-panel">
           <p className="gold-kicker">Site Structure</p>
-          <h2>Focused pages for a focused procurement mission.</h2>
-        </div>
 
-        <div className="structure-grid">
           {siteStructure.map((item) => {
             const Icon = item.icon;
 
             return (
               <button
                 key={item.path}
-                className="structure-card"
+                className="site-map-item"
                 onClick={() => navigate(item.path)}
               >
-                <Icon size={28} />
+                <Icon size={24} />
                 <span>
                   <strong>{item.title}</strong>
                   <em>{item.text}</em>
                 </span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </button>
             );
           })}
-        </div>
-      </section>
-    </>
+        </aside>
+      </div>
+
+      <div className="home-capability-strip">
+        {capabilities.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article key={item.title} className="strip-card">
+              <Icon size={34} />
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -432,6 +416,30 @@ function ContractingPage() {
 }
 
 function ContactPage() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = new FormData(event.currentTarget);
+    const name = form.get("name") || "";
+    const organization = form.get("organization") || "";
+    const email = form.get("email") || "";
+    const phone = form.get("phone") || "";
+    const message = form.get("message") || "";
+
+    const subject = encodeURIComponent("UAM Sourcing Inquiry");
+    const body = encodeURIComponent(
+      `Name: ${name}
+Organization: ${organization}
+Email: ${email}
+Phone: ${phone}
+
+Message:
+${message}`
+    );
+
+    window.location.href = `mailto:Dan.Zugrav@uam-inc.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section className="page-frame content-page contact-page">
       <div className="page-heading">
@@ -442,43 +450,101 @@ function ContactPage() {
         <p>
           For controlled or sensitive sourcing requests, contact UAM directly
           with a concise RFQ, system description, or capability discussion
-          request. Inquiries should relate to authorized government,
-          contractor, research, testing, or evaluation requirements.
+          request. Inquiries should relate to authorized government, contractor,
+          research, testing, or evaluation requirements.
         </p>
       </div>
 
-      <div className="contact-boxes">
-        <a href="mailto:Dan.Zugrav@uam-inc.com">
-          <Mail size={24} />
-          <span>
-            <strong>Email</strong>
-            <em>Dan.Zugrav@uam-inc.com</em>
-          </span>
-        </a>
+      <div className="contact-layout">
+        <div className="contact-boxes">
+          <a href="mailto:Dan.Zugrav@uam-inc.com">
+            <Mail size={24} />
+            <span>
+              <strong>Email</strong>
+              <em>Dan.Zugrav@uam-inc.com</em>
+            </span>
+          </a>
 
-        <a href="tel:+15618019030">
-          <Phone size={24} />
-          <span>
-            <strong>Phone</strong>
-            <em>+1 (561) 801-9030</em>
-          </span>
-        </a>
+          <a href="tel:+15618019030">
+            <Phone size={24} />
+            <span>
+              <strong>Primary Phone</strong>
+              <em>+1 (561) 801-9030</em>
+            </span>
+          </a>
 
-        <div>
-          <Building2 size={24} />
-          <span>
-            <strong>Company</strong>
-            <em>United Acquisition Management, Inc.</em>
-          </span>
+          <a href="tel:+40758105104">
+            <Phone size={24} />
+            <span>
+              <strong>Secondary Phone</strong>
+              <em>+40 758 105 104</em>
+            </span>
+          </a>
+
+          <div>
+            <MapPin size={24} />
+            <span>
+              <strong>Address</strong>
+              <em>7246 Marlow Place, University Park, Florida 34201</em>
+            </span>
+          </div>
         </div>
 
-        <div>
-          <Globe2 size={24} />
-          <span>
-            <strong>Website</strong>
-            <em>uam-inc.com</em>
-          </span>
-        </div>
+        <form className="inquiry-form" onSubmit={handleSubmit}>
+          <div className="form-header">
+            <p className="gold-kicker">Procurement Inquiry</p>
+            <h2>Submit a sourcing request</h2>
+            <p>
+              Provide basic contact information and a concise description of the
+              requirement. The form opens a prepared email to UAM.
+            </p>
+          </div>
+
+          <div className="form-grid">
+            <label>
+              <span>Name</span>
+              <input name="name" type="text" placeholder="Your name" required />
+            </label>
+
+            <label>
+              <span>Organization</span>
+              <input
+                name="organization"
+                type="text"
+                placeholder="Company / agency / unit"
+              />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input
+                name="email"
+                type="email"
+                placeholder="name@example.com"
+                required
+              />
+            </label>
+
+            <label>
+              <span>Phone</span>
+              <input name="phone" type="tel" placeholder="+1 ..." />
+            </label>
+          </div>
+
+          <label className="message-field">
+            <span>Message</span>
+            <textarea
+              name="message"
+              placeholder="Briefly describe the system, component, or procurement requirement."
+              rows="6"
+              required
+            />
+          </label>
+
+          <button className="gold-button form-submit" type="submit">
+            <Send size={17} /> Prepare Inquiry Email
+          </button>
+        </form>
       </div>
     </section>
   );
