@@ -896,3 +896,27 @@ footer {
     ),
     url("/images/hero-space-bg.jpg") center right / cover no-repeat !important;
 }
+{
+  title: "Airlogix GOR",
+  subtitle: "Fixed-Wing Reconnaissance UAS",
+  category: "Drones / UAS",
+  image: "/images/system-drone-gor.jpg",
+},
+{
+  title: "Ukrspecsystems Shark",
+  subtitle: "Mid-Range ISR Platform",
+  category: "Drones / UAS",
+  image: "/images/system-drone-shark.jpg",
+},
+{
+  title: "Ukrspecsystems PD-2",
+  subtitle: "Long-Range / VTOL UAS",
+  category: "Drones / UAS",
+  image: "/images/system-drone-pd2.jpg",
+},
+{
+  title: "Athlon Avia Furia",
+  subtitle: "Tactical Reconnaissance UAV",
+  category: "Drones / UAS",
+  image: "/images/system-drone-furia.jpg",
+},
