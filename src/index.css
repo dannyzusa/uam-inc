@@ -878,3 +878,21 @@ footer {
     min-width: 0;
   }
 }
+/* ---- Brighten homepage satellite background ---- */
+
+.home-frame {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 7, 12, 0.78) 0%,
+      rgba(3, 7, 12, 0.62) 34%,
+      rgba(3, 7, 12, 0.24) 62%,
+      rgba(3, 7, 12, 0.02) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4, 8, 14, 0.02) 0%,
+      rgba(4, 8, 14, 0.42) 100%
+    ),
+    url("/images/hero-space-bg.jpg") center right / cover no-repeat !important;
+}
