@@ -17,8 +17,6 @@ import {
   ClipboardCheck,
   MapPin,
   Send,
-  User,
-  Users,
 } from "lucide-react";
 
 const navItems = [
@@ -394,10 +392,8 @@ function ContractingPage() {
           <h2>Company Information</h2>
           <ul>
             <li>United Acquisition Management, Inc.</li>
-            <li>Florida Profit Corporation</li>
             <li>Founded in 2010</li>
-            <li>Document Number: P10000036272</li>
-            <li>FEI/EIN: 27-2435425</li>
+            <li>Specialized foreign materiel procurement support</li>
             <li>Capability Statement Available Upon Request</li>
           </ul>
         </div>
@@ -416,6 +412,8 @@ function ContractingPage() {
 }
 
 function ContactPage() {
+  const [showInquiryForm, setShowInquiryForm] = React.useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -488,63 +486,72 @@ ${message}`
               <em>7246 Marlow Place, University Park, Florida 34201</em>
             </span>
           </div>
+
+          <button
+            className="gold-button inquiry-toggle"
+            onClick={() => setShowInquiryForm(true)}
+          >
+            <Send size={17} /> Open Procurement Inquiry Form
+          </button>
         </div>
 
-        <form className="inquiry-form" onSubmit={handleSubmit}>
-          <div className="form-header">
-            <p className="gold-kicker">Procurement Inquiry</p>
-            <h2>Submit a sourcing request</h2>
-            <p>
-              Provide basic contact information and a concise description of the
-              requirement. The form opens a prepared email to UAM.
-            </p>
-          </div>
+        {showInquiryForm && (
+          <form className="inquiry-form" onSubmit={handleSubmit}>
+            <div className="form-header">
+              <p className="gold-kicker">Procurement Inquiry</p>
+              <h2>Submit a sourcing request</h2>
+              <p>
+                Provide basic contact information and a concise description of
+                the requirement. The form opens a prepared email to UAM.
+              </p>
+            </div>
 
-          <div className="form-grid">
-            <label>
-              <span>Name</span>
-              <input name="name" type="text" placeholder="Your name" required />
-            </label>
+            <div className="form-grid">
+              <label>
+                <span>Name</span>
+                <input name="name" type="text" placeholder="Your name" required />
+              </label>
 
-            <label>
-              <span>Organization</span>
-              <input
-                name="organization"
-                type="text"
-                placeholder="Company / agency / unit"
-              />
-            </label>
+              <label>
+                <span>Organization</span>
+                <input
+                  name="organization"
+                  type="text"
+                  placeholder="Company / agency / unit"
+                />
+              </label>
 
-            <label>
-              <span>Email</span>
-              <input
-                name="email"
-                type="email"
-                placeholder="name@example.com"
+              <label>
+                <span>Email</span>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  required
+                />
+              </label>
+
+              <label>
+                <span>Phone</span>
+                <input name="phone" type="tel" placeholder="+1 ..." />
+              </label>
+            </div>
+
+            <label className="message-field">
+              <span>Message</span>
+              <textarea
+                name="message"
+                placeholder="Briefly describe the system, component, or procurement requirement."
+                rows="6"
                 required
               />
             </label>
 
-            <label>
-              <span>Phone</span>
-              <input name="phone" type="tel" placeholder="+1 ..." />
-            </label>
-          </div>
-
-          <label className="message-field">
-            <span>Message</span>
-            <textarea
-              name="message"
-              placeholder="Briefly describe the system, component, or procurement requirement."
-              rows="6"
-              required
-            />
-          </label>
-
-          <button className="gold-button form-submit" type="submit">
-            <Send size={17} /> Prepare Inquiry Email
-          </button>
-        </form>
+            <button className="gold-button form-submit" type="submit">
+              <Send size={17} /> Prepare Inquiry Email
+            </button>
+          </form>
+        )}
       </div>
     </section>
   );
