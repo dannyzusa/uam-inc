@@ -4,13 +4,10 @@
   --bg: #05080d;
   --panel: #07101a;
   --panel-2: #0b1420;
-  --panel-3: #101b2a;
   --text: #f4f2ec;
   --muted: #b4bcc8;
   --soft: #828c99;
   --gold: #c7a46a;
-  --gold-2: #94753d;
-  --line: rgba(199, 164, 106, 0.16);
   --line-blue: rgba(115, 148, 190, 0.22);
   --shadow: 0 26px 90px rgba(0, 0, 0, 0.42);
 }
@@ -110,7 +107,7 @@ a {
   color: #ffffff;
 }
 
-brand-text em {
+.brand-text em {
   margin-top: 4px;
   font-style: normal;
   font-size: 0.72rem;
@@ -192,7 +189,7 @@ brand-text em {
   transform: translateY(-1px);
 }
 
-/* Shared page frame */
+/* Shared frame */
 
 .page-frame {
   width: min(1320px, calc(100vw - 48px));
