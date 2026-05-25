@@ -113,6 +113,30 @@ const systems = [
     category: "Drones / UAS",
     image: "/images/system-drone-furia.jpg",
   },
+  {
+    title: "DeViRo Leleka-100",
+    subtitle: "Tactical Reconnaissance UAV",
+    category: "Drones / UAS",
+    image: "/images/system-drone-leleka.jpg",
+  },
+  {
+    title: "Spectator-M / M1",
+    subtitle: "Compact ISR Platform",
+    category: "Drones / UAS",
+    image: "/images/system-drone-spectator.jpg",
+  },
+  {
+    title: "RAM II",
+    subtitle: "Loitering UAS Platform",
+    category: "Drones / UAS",
+    image: "/images/system-drone-ramii.jpg",
+  },
+  {
+    title: "UA Dynamics Punisher",
+    subtitle: "Light UAS Platform",
+    category: "Drones / UAS",
+    image: "/images/system-drone-punisher.jpg",
+  },
 ];
 
 const tabs = [
@@ -204,6 +228,7 @@ function Header({ page, navigate, openInquiry }) {
     <header className="site-header">
       <button
         className="brand-link"
+        type="button"
         onClick={() => navigate("/")}
         aria-label="Go to home"
       >
@@ -410,6 +435,9 @@ function ContractingPage() {
           <ul>
             <li>United Acquisition Management, Inc.</li>
             <li>Founded in 2010</li>
+            <li>CAGE Code: 61HR4</li>
+            <li>DUNS: 962497710</li>
+            <li>Service Disabled Veteran-Owned Small Business</li>
             <li>Capability Statement Available Upon Request</li>
           </ul>
         </div>
@@ -531,7 +559,12 @@ ${message}`
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true">
       <div className="inquiry-modal">
-        <button className="modal-close" type="button" onClick={close} aria-label="Close form">
+        <button
+          className="modal-close"
+          type="button"
+          onClick={close}
+          aria-label="Close form"
+        >
           <X size={22} />
         </button>
 
