@@ -447,32 +447,29 @@ a {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
-
 .system-card {
   overflow: hidden;
   border-radius: 8px;
-  border: 1px solid var(--line-blue);
-  background: #08111d;
-}
-
-.system-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  filter: brightness(0.76) contrast(1.06) saturate(0.86);
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.system-card:hover img {
-  transform: scale(1.025);
-  filter: brightness(0.9) contrast(1.08) saturate(0.92);
+  border: 1px solid rgba(145, 174, 213, 0.36);
+  background: #0d1725;
 }
 
 .system-card div {
   padding: 14px 16px 16px;
 }
+.system-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: brightness(1.08) contrast(1.04) saturate(1.02);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
 
+.system-card:hover img {
+  transform: scale(1.025);
+  filter: brightness(1.16) contrast(1.06) saturate(1.06);
+}
 .system-card h3 {
   margin: 0 0 4px;
   font-family: "Barlow Condensed", sans-serif;
