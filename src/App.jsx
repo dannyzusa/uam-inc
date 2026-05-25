@@ -38,21 +38,25 @@ const systems = [
   {
     icon: Radar,
     title: "Radar & Air Defense Systems",
+    image: "/images/system-radar.jpg",
     text: "Procurement support for surveillance radars, target-acquisition systems, air-defense-related equipment, and supporting components.",
   },
   {
     icon: Target,
     title: "Armored & Ground Platforms",
+    image: "/images/system-armor.jpg",
     text: "Support for armored vehicles, legacy tracked platforms, subsystems, and related foreign-origin equipment for evaluation and exploitation needs.",
   },
   {
     icon: Plane,
     title: "Aircraft & Aviation Systems",
+    image: "/images/system-aircraft.jpg",
     text: "Focused sourcing support for foreign-origin aircraft-related equipment, helicopter systems, upgraded legacy airframes, and supporting hardware.",
   },
   {
     icon: Cpu,
     title: "Electronic / Technical Materiel",
+    image: "/images/system-electronics.jpg",
     text: "Assistance with hard-to-source technical equipment, subsystems, and specialized components relevant to testing, analysis, and R&D programs.",
   },
 ];
@@ -114,9 +118,7 @@ export default function App() {
                 Specialized Procurement for U.S. Department of Defense R&amp;D
               </p>
 
-              <h1>
-                Foreign materiel procurement for DOD research and evaluation.
-              </h1>
+              <h1>Foreign materiel procurement for DOD research and evaluation.</h1>
 
               <p className="hero-copy">
                 United Acquisition Management, Inc. is a specialized procurement
@@ -140,24 +142,31 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="profile-card"
+              className="hero-side"
             >
-              <div className="profile-inner">
-                <p className="card-label">Company Profile</p>
+              <div className="hero-image-card">
+                <img src="/images/hero-radar.jpg" alt="Foreign-origin radar system" />
+                <div className="image-kicker">Foreign Systems / R&amp;D Support</div>
+              </div>
 
-                <InfoRow
-                  icon={Building2}
-                  title="Company"
-                  text="United Acquisition Management, Inc."
-                />
+              <div className="profile-card">
+                <div className="profile-inner">
+                  <p className="card-label">Company Profile</p>
 
-                <InfoRow icon={Globe2} title="Website" text="uam-inc.com" />
+                  <InfoRow
+                    icon={Building2}
+                    title="Company"
+                    text="United Acquisition Management, Inc."
+                  />
 
-                <InfoRow
-                  icon={ShieldCheck}
-                  title="Primary Focus"
-                  text="Procurement of hard-to-source foreign-origin defense systems for authorized U.S. government R&D."
-                />
+                  <InfoRow icon={Globe2} title="Website" text="uam-inc.com" />
+
+                  <InfoRow
+                    icon={ShieldCheck}
+                    title="Primary Focus"
+                    text="Procurement of hard-to-source foreign-origin defense systems for authorized U.S. government R&D."
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -211,6 +220,9 @@ export default function App() {
 
             return (
               <article className="system-card" key={item.title}>
+                <div className="system-image">
+                  <img src={item.image} alt={item.title} />
+                </div>
                 <div className="system-icon">
                   <Icon size={22} />
                 </div>
