@@ -587,3 +587,18 @@ footer { padding: 22px; text-align: center; color: var(--soft); font-family: Int
 .main-nav {
   min-width: 0;
 }
+/* ---- Header containment polish ---- */
+
+.site-header {
+  width: min(1320px, calc(100vw - 48px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-cta {
+  flex-shrink: 0;
+}
+
+.main-nav {
+  min-width: 0;
+}
