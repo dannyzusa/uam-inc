@@ -214,15 +214,15 @@ a {
   background:
     linear-gradient(
       90deg,
-      rgba(3, 7, 12, 0.72) 0%,
-      rgba(3, 7, 12, 0.58) 35%,
-      rgba(3, 7, 12, 0.22) 64%,
-      rgba(3, 7, 12, 0.04) 100%
+      rgba(3, 7, 12, 0.58) 0%,
+      rgba(3, 7, 12, 0.42) 34%,
+      rgba(3, 7, 12, 0.14) 62%,
+      rgba(3, 7, 12, 0.00) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(4, 8, 14, 0.01) 0%,
-      rgba(4, 8, 14, 0.36) 100%
+      rgba(4, 8, 14, 0.00) 0%,
+      rgba(4, 8, 14, 0.22) 100%
     ),
     url("/images/hero-space-bg.jpg") center right / cover no-repeat;
 }
@@ -274,7 +274,7 @@ a {
   color: #d2d7df;
   font-size: 1.02rem;
   line-height: 1.65;
-  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.72);
 }
 
 .hero-actions {
@@ -293,7 +293,7 @@ a {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   min-height: 145px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(3, 7, 12, 0.62);
+  background: rgba(3, 7, 12, 0.48);
   backdrop-filter: blur(2px);
 }
 
@@ -415,8 +415,9 @@ a {
 
 .systems-tabs {
   display: flex;
-  gap: 28px;
+  gap: 18px 22px;
   flex-wrap: wrap;
+  align-items: center;
   padding: 16px 0 18px;
   margin-bottom: 26px;
   border-top: 1px solid rgba(255, 255, 255, 0.11);
@@ -429,10 +430,11 @@ a {
   padding: 0;
   color: #d9dde4;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.085em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .systems-tabs button.active,
@@ -824,9 +826,9 @@ footer {
     background:
       linear-gradient(
         180deg,
-        rgba(3, 7, 12, 0.84) 0%,
-        rgba(3, 7, 12, 0.55) 48%,
-        rgba(3, 7, 12, 0.88) 100%
+        rgba(3, 7, 12, 0.78) 0%,
+        rgba(3, 7, 12, 0.48) 48%,
+        rgba(3, 7, 12, 0.82) 100%
       ),
       url("/images/hero-space-bg.jpg") center / cover no-repeat;
   }
@@ -862,7 +864,7 @@ footer {
   }
 
   .systems-tabs {
-    gap: 16px;
+    gap: 14px 18px;
   }
 
   .contact-form-cta .gold-button {
