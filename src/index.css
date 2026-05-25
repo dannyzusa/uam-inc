@@ -602,3 +602,95 @@ footer { padding: 22px; text-align: center; color: var(--soft); font-family: Int
 .main-nav {
   min-width: 0;
 }
+/* ---- Final homepage compression + brighter satellite image ---- */
+
+.home-frame {
+  min-height: calc(100vh - 24px) !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 7, 12, 0.9) 0%,
+      rgba(3, 7, 12, 0.76) 34%,
+      rgba(3, 7, 12, 0.34) 62%,
+      rgba(3, 7, 12, 0.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4, 8, 14, 0.03) 0%,
+      rgba(4, 8, 14, 0.62) 100%
+    ),
+    url("/images/hero-space-bg.jpg") center right / cover no-repeat !important;
+}
+
+.home-frame .home-main-grid,
+.home-frame .hero-with-image {
+  padding-top: 58px !important;
+  padding-bottom: 34px !important;
+  min-height: auto !important;
+  grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.44fr) !important;
+  align-items: center !important;
+}
+
+.home-frame .hero-copy-block {
+  max-width: 720px !important;
+}
+
+.home-frame .hero-copy-block h1 {
+  font-size: clamp(2.8rem, 4.45vw, 4.85rem) !important;
+  line-height: 0.93 !important;
+  letter-spacing: -0.055em !important;
+  max-width: 760px !important;
+}
+
+.home-frame .hero-copy-block p:not(.gold-kicker) {
+  max-width: 680px !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+.home-frame .gold-kicker {
+  margin-bottom: 16px !important;
+}
+
+.home-frame .hero-actions {
+  margin-top: 26px !important;
+}
+
+.home-frame .home-capability-strip {
+  min-height: 150px !important;
+}
+
+.home-frame .strip-card {
+  padding: 24px 28px !important;
+}
+
+.home-frame .strip-card h3 {
+  margin-bottom: 8px !important;
+}
+
+.home-frame .strip-card p {
+  font-size: 0.94rem !important;
+  line-height: 1.55 !important;
+}
+
+.hero-image-panel {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .home-frame {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 7, 12, 0.88) 0%,
+        rgba(3, 7, 12, 0.64) 48%,
+        rgba(3, 7, 12, 0.9) 100%
+      ),
+      url("/images/hero-space-bg.jpg") center / cover no-repeat !important;
+  }
+
+  .home-frame .home-main-grid {
+    grid-template-columns: 1fr !important;
+    padding-top: 42px !important;
+  }
+}
