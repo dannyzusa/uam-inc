@@ -194,3 +194,32 @@ footer { padding: 22px; text-align: center; color: var(--soft); font-family: Int
   .hero-copy-block h1, .page-heading h1 { font-size: clamp(2.7rem, 13vw, 4.2rem); }
   .nav-cta { width: max-content; }
 }
+/* ---- Systems page title fit + tighter gallery spacing ---- */
+
+.systems-page .page-heading h1 {
+  font-size: clamp(3rem, 4.6vw, 4.75rem);
+  line-height: 0.94;
+  max-width: 920px;
+}
+
+.systems-page .page-heading {
+  margin-bottom: 24px;
+}
+
+.systems-tabs {
+  margin-bottom: 22px;
+}
+
+.systems-gallery {
+  gap: 16px;
+}
+
+.system-card img {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 900px) {
+  .systems-page .page-heading h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+}
