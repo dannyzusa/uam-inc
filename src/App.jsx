@@ -43,12 +43,6 @@ const capabilities = [
 
 const systems = [
   {
-    title: "S-300 / 1S91M3 Radar",
-    subtitle: "Surveillance & Acquisition Radar",
-    category: "Radar Systems",
-    image: "/images/system-radar.jpg",
-  },
-  {
     title: "Podlet Radar",
     subtitle: "Mobile Low-Altitude Radar",
     category: "Radar Systems",
@@ -68,12 +62,6 @@ const systems = [
   },
 
   {
-    title: "Air Defense Systems",
-    subtitle: "SAM Systems & Components",
-    category: "Air Defense",
-    image: "/images/system-airdefense.jpg",
-  },
-  {
     title: "Buk Family",
     subtitle: "Air Defense Platforms",
     category: "Air Defense",
@@ -87,12 +75,6 @@ const systems = [
   },
 
   {
-    title: "T-80 / T-90 Series",
-    subtitle: "Main Battle Tanks",
-    category: "Armored Platforms",
-    image: "/images/system-armor.jpg",
-  },
-  {
     title: "T-90 Series",
     subtitle: "Main Battle Tank Platforms",
     category: "Armored Platforms",
@@ -103,12 +85,6 @@ const systems = [
     subtitle: "Infantry Fighting Vehicle",
     category: "Armored Platforms",
     image: "/images/system-bmp3.jpg",
-  },
-  {
-    title: "BTR / APC Platforms",
-    subtitle: "Armored Personnel Carriers",
-    category: "Armored Platforms",
-    image: "/images/system-armor-btr.jpg",
   },
 
   {
@@ -129,12 +105,6 @@ const systems = [
     category: "Aircraft / Helicopters",
     image: "/images/system-hind.jpg",
   },
-  {
-    title: "Aircraft Engines & Radar",
-    subtitle: "Aviation Support Components",
-    category: "Aircraft / Helicopters",
-    image: "/images/system-aircraft-engine.jpg",
-  },
 
   {
     title: "Electronic Warfare Systems",
@@ -149,12 +119,6 @@ const systems = [
     image: "/images/system-electronics.jpg",
   },
 
-  {
-    title: "DeViRo Leleka-100",
-    subtitle: "Tactical Reconnaissance UAV",
-    category: "Drones / UAS",
-    image: "/images/system-drone-leleka.jpg",
-  },
   {
     title: "Spectator-M / M1",
     subtitle: "Compact ISR Platform",
