@@ -49,8 +49,14 @@ const systems = [
     image: "/images/system-radar.jpg",
   },
   {
-    title: "Nebo / P-Series Radars",
-    subtitle: "Mobile Radar Systems",
+    title: "Podlet Radar",
+    subtitle: "Mobile Low-Altitude Radar",
+    category: "Radar Systems",
+    image: "/images/system-radar-podlet.jpg",
+  },
+  {
+    title: "Nebo-M Radar",
+    subtitle: "Mobile Multiband Radar System",
     category: "Radar Systems",
     image: "/images/system-radar-nebo.jpg",
   },
@@ -60,6 +66,7 @@ const systems = [
     category: "Radar Systems",
     image: "/images/system-radar-p18.jpg",
   },
+
   {
     title: "Air Defense Systems",
     subtitle: "SAM Systems & Components",
@@ -78,6 +85,7 @@ const systems = [
     category: "Air Defense",
     image: "/images/system-airdefense-tor.jpg",
   },
+
   {
     title: "T-80 / T-90 Series",
     subtitle: "Main Battle Tanks",
@@ -102,6 +110,7 @@ const systems = [
     category: "Armored Platforms",
     image: "/images/system-armor-btr.jpg",
   },
+
   {
     title: "Su-27 Family",
     subtitle: "Upgraded Variants",
@@ -126,6 +135,7 @@ const systems = [
     category: "Aircraft / Helicopters",
     image: "/images/system-aircraft-engine.jpg",
   },
+
   {
     title: "Electronic Warfare Systems",
     subtitle: "EW Equipment & Components",
@@ -138,30 +148,7 @@ const systems = [
     category: "Electronics",
     image: "/images/system-electronics.jpg",
   },
-  {
-    title: "Airlogix GOR",
-    subtitle: "Fixed-Wing Reconnaissance UAS",
-    category: "Drones / UAS",
-    image: "/images/system-drone-gor.jpg",
-  },
-  {
-    title: "Ukrspecsystems Shark",
-    subtitle: "Mid-Range ISR Platform",
-    category: "Drones / UAS",
-    image: "/images/system-drone-shark.jpg",
-  },
-  {
-    title: "Ukrspecsystems PD-2",
-    subtitle: "Long-Range / VTOL UAS",
-    category: "Drones / UAS",
-    image: "/images/system-drone-pd2.jpg",
-  },
-  {
-    title: "Athlon Avia Furia",
-    subtitle: "Tactical Reconnaissance UAV",
-    category: "Drones / UAS",
-    image: "/images/system-drone-furia.jpg",
-  },
+
   {
     title: "DeViRo Leleka-100",
     subtitle: "Tactical Reconnaissance UAV",
@@ -175,16 +162,16 @@ const systems = [
     image: "/images/system-drone-spectator.jpg",
   },
   {
-    title: "RAM II",
-    subtitle: "Loitering UAS Platform",
+    title: "Orlan-10",
+    subtitle: "Foreign-Origin ISR UAS",
     category: "Drones / UAS",
-    image: "/images/system-drone-ramii.jpg",
+    image: "/images/system-drone-orlan10.jpg",
   },
   {
-    title: "UA Dynamics Punisher",
-    subtitle: "Light UAS Platform",
+    title: "Eleron-3SV",
+    subtitle: "Foreign-Origin Tactical UAS",
     category: "Drones / UAS",
-    image: "/images/system-drone-punisher.jpg",
+    image: "/images/system-drone-eleron.jpg",
   },
 ];
 
