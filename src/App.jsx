@@ -107,12 +107,6 @@ const systems = [
   },
 
   {
-    title: "Electronic Warfare Systems",
-    subtitle: "EW Equipment & Components",
-    category: "Electronics",
-    image: "/images/system-ew.jpg",
-  },
-  {
     title: "Radar Electronics",
     subtitle: "Control, Sensor & Signal Systems",
     category: "Electronics",
@@ -120,22 +114,10 @@ const systems = [
   },
 
   {
-    title: "Spectator-M / M1",
-    subtitle: "Compact ISR Platform",
-    category: "Drones / UAS",
-    image: "/images/system-drone-spectator.jpg",
-  },
-  {
     title: "Orlan-10",
     subtitle: "Foreign-Origin ISR UAS",
     category: "Drones / UAS",
     image: "/images/system-drone-orlan10.jpg",
-  },
-  {
-    title: "Eleron-3SV",
-    subtitle: "Foreign-Origin Tactical UAS",
-    category: "Drones / UAS",
-    image: "/images/system-drone-eleron.jpg",
   },
 ];
 
@@ -186,6 +168,7 @@ export default function App() {
   React.useEffect(() => {
     const onPopState = () => setPath(window.location.pathname || "/");
     window.addEventListener("popstate", onPopState);
+
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
