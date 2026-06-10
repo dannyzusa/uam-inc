@@ -5,14 +5,20 @@ import {
   Mail,
   Phone,
   Radar,
-  Target,
   CheckCircle2,
-  LockKeyhole,
   BriefcaseBusiness,
   MapPin,
   Send,
   X,
   PackageCheck,
+  Crosshair,
+  Ship,
+  Plane,
+  Cpu,
+  UserCheck,
+  Award,
+  Network,
+  Container,
 } from "lucide-react";
 
 /*
@@ -47,141 +53,163 @@ const navItems = [
   { label: "Contact", path: "/contact" },
 ];
 
-const capabilities = [
+/* ------------------------------------------------------------------
+   Why UAM — the small-contractor case, stated without apology
+------------------------------------------------------------------ */
+
+const differentiators = [
   {
-    icon: Target,
-    title: "Hard-to-Procure Systems",
-    text: "Access to foreign-origin systems, components, and technologies with limited or restricted availability.",
+    icon: UserCheck,
+    title: "One Principal. Zero Layers.",
+    text: "Your requirement is handled by the owner — not routed through account managers, committees, or subcontractor chains. Decisions in hours. Accountability in one name.",
+  },
+  {
+    icon: Award,
+    title: "Proven Prime",
+    text: "Prime purchase-order awards from the Department of the Air Force, performed and closed. Small business, prime-contract discipline — not a broker, not a middle layer.",
+  },
+  {
+    icon: Network,
+    title: "Source Access Money Can't Rush",
+    text: "Supplier relationships across Ukraine and Eastern Europe built since 2010 — long before this materiel was fashionable. When availability is the whole problem, access is the whole answer.",
   },
   {
     icon: ShieldCheck,
-    title: "Compliance Driven",
-    text: "All procurement activity is conducted in accordance with U.S. law, sanctions, export controls, and end-use rules.",
+    title: "Compliance Without Compromise",
+    text: "Every acquisition is structured around U.S. law, sanctions, export controls, and end-use requirements from the first contact — because one shortcut ends a program.",
+  },
+];
+
+/* ------------------------------------------------------------------
+   Acquisition lines — focused, current, ordered by demand
+------------------------------------------------------------------ */
+
+const categories = [
+  {
+    id: "interceptors",
+    name: "Counter-UAS Interceptors",
+    icon: Crosshair,
+    tag: "Among the most sought-after categories in defense acquisition today",
+    blurb:
+      "Combat-proven Ukrainian interceptor UAS, credited in open reporting with neutralizing large numbers of one-way attack drones at a fraction of missile cost — directly relevant reference hardware for U.S. counter-UAS development, test, and evaluation.",
   },
   {
-    icon: LockKeyhole,
-    title: "Discreet & Professional",
-    text: "We operate with the discretion, security, and professional communication required in defense procurement.",
+    id: "strike",
+    name: "Long-Range Strike UAS",
+    icon: Plane,
+    tag: "Deep-strike one-way attack platforms",
+    blurb:
+      "Deep-strike systems delivering exceptional cost-per-effect at ranges beyond 1,000 km. Airframes, guidance architecture, and warhead integration relevant to exploitation, threat replication, and survivability analysis.",
+  },
+  {
+    id: "isr",
+    name: "Tactical ISR & Loitering",
+    icon: Radar,
+    tag: "Battle-tested reconnaissance and loitering munitions",
+    blurb:
+      "ISR and loitering-munition platforms matured through years of electronic warfare at the line of contact — datalinks, optics, and counter-jamming approaches with an operational track record few systems can match.",
+  },
+  {
+    id: "naval",
+    name: "Naval Unmanned Systems",
+    icon: Ship,
+    tag: "Surface and underwater unmanned vehicles",
+    blurb:
+      "The unmanned surface and underwater vehicles that reshaped the naval picture in the Black Sea — from one-way attack USVs to missile-armed and interceptor-carrier variants now exercising with NATO partners.",
+  },
+  {
+    id: "radar",
+    name: "Radar & Air Defense",
+    icon: Cpu,
+    tag: "Foundational foreign-origin sensors and SAM systems",
+    blurb:
+      "The radar and surface-to-air systems UAM has sourced since its founding — early-warning radar families, mobile SAM platforms, and the ZIP-kit depth to keep them operating through multi-year test programs.",
+  },
+  {
+    id: "platforms",
+    name: "Platforms & Components",
+    icon: Container,
+    tag: "Aircraft, armor, engines, and system blocks",
+    blurb:
+      "Fixed- and rotary-wing aircraft, armored vehicles, engines, radar sets, and the unglamorous component depth — spares, blocks, and ZIP kits — that determines whether an evaluation program runs for four years or stalls in four months.",
   },
 ];
 
 const systems = [
+  /* ---- Counter-UAS Interceptors ---- */
   {
-    title: "Podlet Radar",
-    subtitle: "Mobile Low-Altitude Radar",
-    category: "Radar Systems",
-    image: "/images/system-radar-podlet.jpg",
-    desc: "Low-altitude surveillance radar for detection of aircraft, helicopters, and cruise missiles at terrain-masked approach profiles.",
+    title: "Sting",
+    subtitle: "Wild Hornets Interceptor UAS",
+    category: "interceptors",
+    image: "/images/system-int-sting.jpg",
+    desc: "Among the most combat-proven interceptors fielded to date — credited with thousands of Shahed-class intercepts; 315+ km/h, thermal sensor with AI-assisted terminal guidance, man-portable.",
   },
   {
-    title: "Nebo-M Radar",
-    subtitle: "Mobile Multiband Radar System",
-    category: "Radar Systems",
-    image: "/images/system-radar-nebo.jpg",
-    desc: "Multiband (VHF/L/X) radar complex with counter-low-observable detection roles; high-value subject for signature and waveform exploitation.",
+    title: "Octopus-100",
+    subtitle: "Ukrspecsystems Night Interceptor",
+    category: "interceptors",
+    image: "/images/system-int-octopus.jpg",
+    desc: "Night-capable, jam-resistant interceptor with autonomous target lock; selected for mass production including licensed manufacture in the United Kingdom.",
   },
   {
-    title: "P-18 Radar Family",
-    subtitle: "Legacy / Modernized Radar Systems",
-    category: "Radar Systems",
-    image: "/images/system-radar-p18.jpg",
-    desc: "VHF early-warning radar family (P-11 / P-18 / P-19 lineage) with modernized digital variants and complete 4-year ZIP-kit support.",
-  },
-
-  {
-    title: "Buk Family",
-    subtitle: "Air Defense Platforms",
-    category: "Air Defense",
-    image: "/images/system-airdefense-buk.jpg",
-    desc: "9K37-series medium-range SAM systems, including 9A310/9A39 vehicles, fire-control radars, and associated missile rounds.",
+    title: "P1-SUN",
+    subtitle: "SkyFall Low-Cost Interceptor",
+    category: "interceptors",
+    image: "/images/system-int-p1sun.jpg",
+    desc: "Low-cost Shahed-class interceptor on a 3D-printed modular airframe; computer vision and thermal imaging, with a large number of reported intercepts.",
   },
   {
-    title: "Tor / Short-Range AD",
-    subtitle: "Mobile Air Defense Systems",
-    category: "Air Defense",
-    image: "/images/system-airdefense-tor.jpg",
-    desc: "9A330/9A331 Tor point-defense systems with 9M331 missiles or 9M334 missile modules for evaluation and threat replication.",
-  },
-  {
-    title: "ZSU-23-4M Shilka",
-    subtitle: "Self-Propelled AA Gun System",
-    category: "Air Defense",
-    image: "/images/system-airdefense-shilka.jpg",
-    desc: "Modernized self-propelled anti-aircraft system with quad 23 mm guns and radar fire control; related 2K22M Tunguska support available.",
+    title: "STRILA",
+    subtitle: "WIY Drones High-Speed Interceptor",
+    category: "interceptors",
+    image: "/images/system-int-strila.jpg",
+    desc: "350+ km/h interceptor with GPS-independent navigation and channel-switching EW-resistant communications; produced at ~100 units per day.",
   },
 
-  {
-    title: "T-90 Series",
-    subtitle: "Main Battle Tank Platforms",
-    category: "Armored Platforms",
-    image: "/images/system-armor-t90.jpg",
-    desc: "Modern MBT platforms and subsystems; T-72M1/M1A and T-80BV/U-series modernized vehicles also supported.",
-  },
-  {
-    title: "BMP-3",
-    subtitle: "Infantry Fighting Vehicle",
-    category: "Armored Platforms",
-    image: "/images/system-bmp3.jpg",
-    desc: "Amphibious IFV with 100 mm / 30 mm combined armament; BTR-80, BTR-3E1, and BTR-4 wheeled APCs also supported.",
-  },
-
-  {
-    title: "Su-27 Family",
-    subtitle: "Upgraded Variants",
-    category: "Aircraft / Helicopters",
-    image: "/images/system-aircraft.jpg",
-    desc: "Airframes, engines, and N001 pulse-Doppler radar sets with track-while-scan and look-down/shoot-down capability.",
-  },
-  {
-    title: "MiG-29 Family",
-    subtitle: "Aircraft Platforms & Systems",
-    category: "Aircraft / Helicopters",
-    image: "/images/system-aircraft-mig29.jpg",
-    desc: "Aircraft, engines, radar, and critical components for test, evaluation, and aggressor-support requirements.",
-  },
-  {
-    title: "Mi-24 / Mi-35",
-    subtitle: "Hind-Series Helicopters",
-    category: "Aircraft / Helicopters",
-    image: "/images/system-hind.jpg",
-    desc: "Hind-series attack helicopters, engines, dynamic components, and spares packages.",
-  },
-
-  {
-    title: "Radar Electronics",
-    subtitle: "Control, Sensor & Signal Systems",
-    category: "Electronics",
-    image: "/images/system-electronics.jpg",
-    desc: "Fire-control, sensor, signal-processing, and command-control-communication blocks for former Soviet-Bloc systems.",
-  },
-
+  /* ---- Long-Range Strike ---- */
   {
     title: "AN-196 Liutyi",
     subtitle: "Long-Range Strike UAS",
-    category: "Drones / UAS",
+    category: "strike",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Antonov_An-196_Liutyi_in_Kouvola.jpg/1280px-Antonov_An-196_Liutyi_in_Kouvola.jpg",
     fallback: "/images/system-drone-liutyi.jpg",
-    desc: "Ukrainian deep-strike one-way attack UAS; 1,000–2,000 km operational range with a 50–75 kg warhead and INS / satellite guidance.",
+    desc: "Ukraine's signature deep-strike OWA-UAV — 1,000–2,000 km reach with a 50–75 kg warhead, INS / satellite guidance with AI-assisted terminal phase.",
   },
   {
-    title: "Fire Point FP-1",
-    subtitle: "Long-Range Strike UAS",
-    category: "Drones / UAS",
+    title: "Fire Point FP-1 / FP-2",
+    subtitle: "Mass-Produced Strike UAS",
+    category: "strike",
     image: "/images/system-drone-fp1.jpg",
-    desc: "Mass-produced Ukrainian one-way attack UAS; up to 1,600 km range with a 60–120 kg modular warhead and ECCM-hardened guidance.",
+    desc: "Shahed-scale production economics with up to 1,600 km range; FP-2 development extends warhead mass beyond 150 kg via wing-integrated fuel design.",
   },
   {
-    title: "Shark UAS",
-    subtitle: "Ukrspecsystems ISR Platform",
-    category: "Drones / UAS",
+    title: "Bars",
+    subtitle: "Turbojet Missile-Drone",
+    category: "strike",
+    image: "/images/system-drone-bars.jpg",
+    desc: "Compact turbojet-powered strike drone engaging targets at 700–800 km; mass-produced system blurring the drone / cruise-missile boundary.",
+  },
+  {
+    title: "Morok",
+    subtitle: "Long-Range Strike UAS",
+    category: "strike",
+    image: "/images/system-drone-morok.jpg",
+    desc: "Long-range strike platform carrying ~30 kg to 800 km; fielded since 2023 and iterated continuously against active air defense.",
+  },
+
+  /* ---- Tactical ISR & Loitering ---- */
+  {
+    title: "Shark / Shark-M",
+    subtitle: "Ukrspecsystems ISR UAS",
+    category: "isr",
     image: "/images/system-drone-shark.jpg",
-    desc: "Catapult-launched ISR and fire-correction UAS; EW-resistant AES-256 datalink to 60–80 km, 30× EO payload, parachute recovery.",
+    desc: "Catapult-launched ISR and fire-correction UAS; AES-256 EW-resistant datalink to 80 km, 30× optics — Shark-M adds dual cameras, laser rangefinder, and field-swappable payloads.",
   },
   {
     title: "PD-2",
     subtitle: "Ukrspecsystems VTOL / Fixed-Wing UAS",
-    category: "Drones / UAS",
+    category: "isr",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/UKRSPECSYSTEMS_PD-2_photo_1.jpg/1280px-UKRSPECSYSTEMS_PD-2_photo_1.jpg",
     fallback: "/images/system-drone-pd2.jpg",
@@ -190,72 +218,149 @@ const systems = [
   {
     title: "Leleka-100",
     subtitle: "DeViRo Tactical Reconnaissance UAV",
-    category: "Drones / UAS",
+    category: "isr",
     image: "/images/system-drone-leleka.jpg",
-    desc: "Proven tactical reconnaissance UAV in wide Ukrainian service; basis for the RAM II loitering-munition family.",
+    desc: "One of the most widely fielded Ukrainian reconnaissance UAVs; the proven base airframe for the RAM loitering-munition family.",
   },
   {
     title: "RAM II / RAM-2X",
     subtitle: "Loitering Munition",
-    category: "Drones / UAS",
+    category: "isr",
     image: "/images/system-drone-ramii.jpg",
-    desc: "Loitering munition with 3 kg thermobaric, shaped-charge, or HE-frag warheads; RAM-2X extends reach beyond 100 km under EW conditions.",
+    desc: "Loitering munition with 3 kg thermobaric, shaped-charge, or HE-frag payloads; RAM-2X X-wing variant extends reach beyond 100 km under EW conditions.",
   },
   {
     title: "Punisher",
     subtitle: "UA Dynamics Strike UAS",
-    category: "Drones / UAS",
+    category: "isr",
     image: "/images/system-drone-punisher.jpg",
     desc: "Reusable low-signature strike UAS employed by Ukrainian special operations forces for precision drops behind the line of contact.",
   },
   {
     title: "A1-CM Furia",
     subtitle: "Athlon Avia Reconnaissance UAV",
-    category: "Drones / UAS",
+    category: "isr",
     image: "/images/system-drone-furia.jpg",
-    desc: "Tactical ISR and artillery fire-correction UAV in Ukrainian service since 2014; flying-wing airframe with encrypted datalink.",
-  },
-  {
-    title: "Spectator-M1",
-    subtitle: "Tactical ISR UAV",
-    category: "Drones / UAS",
-    image: "/images/system-drone-spectator.jpg",
-    desc: "Hand- and catapult-launched tactical reconnaissance UAV with parachute recovery for contested-environment ISR.",
-  },
-  {
-    title: "Orlan-10",
-    subtitle: "Foreign-Origin ISR UAS",
-    category: "Drones / UAS",
-    image: "/images/system-drone-orlan10.jpg",
-    desc: "Russian-origin ISR and EW-relay UAS; airframes and component sets relevant to exploitation and counter-UAS development.",
+    desc: "Tactical ISR and artillery fire-correction UAV in continuous service since 2014; a decade of iteration against real electronic warfare.",
   },
 
+  /* ---- Naval Unmanned ---- */
   {
     title: "Magura V5",
     subtitle: "Multipurpose Unmanned Surface Vessel",
-    category: "Naval / USV",
+    category: "naval",
     image: "/images/system-usv-magura.jpg",
-    desc: "Ukrainian multipurpose USV; ~800 km range at high sprint speeds with a payload sized to defeat surface combatants.",
+    desc: "The USV widely credited with successful engagements of warships at sea — ~800 km range at high sprint speed with a payload sized for surface combatants.",
+  },
+  {
+    title: "Magura V7",
+    subtitle: "Missile / Interceptor-Carrier USV",
+    category: "naval",
+    image: "/images/system-usv-maguraV7.jpg",
+    desc: "Missile-armed evolution of the Magura line, exercised with NATO at REPMUS; 2026 variants launch interceptor drones from deck containers.",
   },
   {
     title: "Sea Baby",
     subtitle: "Heavy-Payload Unmanned Surface Vessel",
-    category: "Naval / USV",
+    category: "naval",
     image: "/images/system-usv-seababy.jpg",
     desc: "Long-range heavy-payload USV class associated with strikes on port infrastructure and stationary naval targets.",
   },
-];
+  {
+    title: "Toloka TLK",
+    subtitle: "Underwater Strike Vehicle Family",
+    category: "naval",
+    image: "/images/system-uuv-toloka.jpg",
+    desc: "Emerging family of AI-assisted underwater strike vehicles spanning man-portable to multi-ton classes; the next layer of the unmanned naval threat picture.",
+  },
 
-const tabs = [
-  "All Categories",
-  "Radar Systems",
-  "Air Defense",
-  "Armored Platforms",
-  "Aircraft / Helicopters",
-  "Electronics",
-  "Drones / UAS",
-  "Naval / USV",
-  "Components & Spares",
+  /* ---- Radar & Air Defense ---- */
+  {
+    title: "Podlet Radar",
+    subtitle: "Mobile Low-Altitude Radar",
+    category: "radar",
+    image: "/images/system-radar-podlet.jpg",
+    desc: "Low-altitude surveillance radar for detection of aircraft, helicopters, and cruise missiles at terrain-masked approach profiles.",
+  },
+  {
+    title: "Nebo-M Radar",
+    subtitle: "Mobile Multiband Radar System",
+    category: "radar",
+    image: "/images/system-radar-nebo.jpg",
+    desc: "Multiband (VHF/L/X) radar complex with counter-low-observable detection roles; high-value subject for signature and waveform exploitation.",
+  },
+  {
+    title: "P-18 Radar Family",
+    subtitle: "Legacy / Modernized Radar Systems",
+    category: "radar",
+    image: "/images/system-radar-p18.jpg",
+    desc: "VHF early-warning radar family (P-11 / P-18 / P-19 lineage) with modernized digital variants and complete 4-year ZIP-kit support.",
+  },
+  {
+    title: "Buk Family",
+    subtitle: "Air Defense Platforms",
+    category: "radar",
+    image: "/images/system-airdefense-buk.jpg",
+    desc: "9K37-series medium-range SAM systems, including 9A310/9A39 vehicles, fire-control radars, and associated missile rounds.",
+  },
+  {
+    title: "Tor / Short-Range AD",
+    subtitle: "Mobile Air Defense Systems",
+    category: "radar",
+    image: "/images/system-airdefense-tor.jpg",
+    desc: "9A330/9A331 Tor point-defense systems with 9M331 missiles or 9M334 missile modules for evaluation and threat replication.",
+  },
+  {
+    title: "ZSU-23-4M Shilka",
+    subtitle: "Self-Propelled AA Gun System",
+    category: "radar",
+    image: "/images/system-airdefense-shilka.jpg",
+    desc: "Modernized self-propelled anti-aircraft system with quad 23 mm guns and radar fire control; related 2K22M Tunguska support available.",
+  },
+
+  /* ---- Platforms & Components ---- */
+  {
+    title: "T-90 Series",
+    subtitle: "Main Battle Tank Platforms",
+    category: "platforms",
+    image: "/images/system-armor-t90.jpg",
+    desc: "Modern MBT platforms and subsystems; T-72M1/M1A and T-80BV/U-series modernized vehicles also supported.",
+  },
+  {
+    title: "BMP-3",
+    subtitle: "Infantry Fighting Vehicle",
+    category: "platforms",
+    image: "/images/system-bmp3.jpg",
+    desc: "Amphibious IFV with 100 mm / 30 mm combined armament; BTR-80, BTR-3E1, and BTR-4 wheeled APCs also supported.",
+  },
+  {
+    title: "Su-27 Family",
+    subtitle: "Upgraded Variants",
+    category: "platforms",
+    image: "/images/system-aircraft.jpg",
+    desc: "Airframes, engines, and N001 pulse-Doppler radar sets with track-while-scan and look-down/shoot-down capability.",
+  },
+  {
+    title: "MiG-29 Family",
+    subtitle: "Aircraft Platforms & Systems",
+    category: "platforms",
+    image: "/images/system-aircraft-mig29.jpg",
+    desc: "Aircraft, engines, radar, and critical components for test, evaluation, and aggressor-support requirements.",
+  },
+  {
+    title: "Mi-24 / Mi-35",
+    subtitle: "Hind-Series Helicopters",
+    category: "platforms",
+    image: "/images/system-hind.jpg",
+    desc: "Hind-series attack helicopters, engines, dynamic components, and spares packages.",
+  },
+  {
+    title: "Radar Electronics",
+    subtitle: "Control, Sensor & Signal Systems",
+    category: "platforms",
+    image: "/images/system-electronics.jpg",
+    desc: "Fire-control, sensor, signal-processing, and command-control-communication blocks for former Soviet-Bloc systems.",
+  },
 ];
 
 const componentSpares = [
@@ -365,7 +470,7 @@ function Header({ page, navigate, openInquiry }) {
         <span className="brand-logo">UAM</span>
         <span className="brand-text">
           <strong>United Acquisition Management</strong>
-          <em>Defense Procurement</em>
+          <em>Foreign Materiel Acquisition</em>
         </span>
       </button>
 
@@ -383,7 +488,7 @@ function Header({ page, navigate, openInquiry }) {
       </nav>
 
       <button className="nav-cta" type="button" onClick={openInquiry}>
-        Contact UAM
+        Submit RFQ
       </button>
     </header>
   );
@@ -478,58 +583,59 @@ function HomePage({ navigate, openInquiry }) {
 
         <div className="hero-copy-block">
           <p className="kicker">
-            Specialized Procurement for U.S. Department of Defense
+            Foreign Materiel Acquisition · U.S. Department of Defense
           </p>
 
-          <h1>Foreign materiel procurement for DOD research and evaluation.</h1>
+          <h1>The systems your program needs aren't in any catalog.</h1>
 
           <p>
-            United Acquisition Management, Inc. is a specialized procurement
-            firm sourcing hard-to-procure foreign-origin military systems,
-            components, and technologies for authorized U.S. Department of
-            Defense research, development, testing, evaluation, and exploitation
-            programs.
+            United Acquisition Management acquires hard-to-procure
+            foreign-origin defense materiel — combat-proven Ukrainian unmanned
+            systems, radar, and air defense — for authorized U.S. DOD research,
+            development, test, and evaluation programs. One principal. Prime
+            past performance with the U.S. Air Force. No layers between your
+            requirement and the source.
           </p>
 
           <div className="hero-actions">
             <button className="accent-button" type="button" onClick={openInquiry}>
-              Contact Procurement
+              Submit RFQ
             </button>
 
             <button
               className="outline-button"
               type="button"
-              onClick={() => navigate("/capabilities")}
+              onClick={() => navigate("/systems")}
             >
-              Our Capabilities
+              Acquisition Lines
             </button>
           </div>
         </div>
 
         <div className="hero-credentials" aria-label="Credentials">
-          <span>Service-Disabled Veteran-Owned Small Business</span>
+          <span>SDVOSB</span>
           <span className="hud-sep">|</span>
           <span>CAGE 61HR4</span>
           <span className="hud-sep">|</span>
-          <span>DUNS 962497710</span>
+          <span>USAF Prime Past Performance</span>
           <span className="hud-sep">|</span>
-          <span>Founded 2010</span>
+          <span>Est. 2010</span>
         </div>
       </section>
 
-      <section className="home-section" id="capabilities">
+      <section className="home-section" id="why">
         <div className="section-head">
           <span className="section-index">01</span>
-          <h2>Capabilities</h2>
+          <h2>Why a Small Contractor Wins Here</h2>
         </div>
 
-        <div className="home-capability-strip">
-          {capabilities.map((item) => {
+        <div className="diff-grid">
+          {differentiators.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article key={item.title} className="strip-card">
-                <Icon size={34} />
+              <article key={item.title} className="strip-card diff-card">
+                <Icon size={32} />
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
@@ -540,63 +646,81 @@ function HomePage({ navigate, openInquiry }) {
         </div>
       </section>
 
-      <section className="home-section" id="systems">
+      <section className="home-section" id="lines">
         <div className="section-head">
           <span className="section-index">02</span>
-          <h2>Systems of Interest</h2>
+          <h2>Acquisition Lines</h2>
           <button
             className="section-link"
             type="button"
             onClick={() => navigate("/systems")}
           >
-            View Full Catalog →
+            Open Systems Desk →
           </button>
         </div>
 
-        <div className="home-systems-rail">
-          {[systems[12], systems[14], systems[1], systems[22]].map((item) => (
-            <article className="system-card" key={item.title}>
-              <SystemImage item={item} />
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.subtitle}</p>
-              </div>
-            </article>
-          ))}
+        <div className="focus-tiles">
+          {categories.slice(0, 4).map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                className="focus-tile"
+                onClick={() => navigate("/systems")}
+              >
+                <Icon size={28} />
+                <strong>{cat.name}</strong>
+                <span>{cat.tag}</span>
+              </button>
+            );
+          })}
         </div>
       </section>
 
-      <section className="home-section" id="contracting">
+      <section className="home-section" id="record">
         <div className="section-head">
           <span className="section-index">03</span>
-          <h2>Contracting</h2>
+          <h2>The Record</h2>
         </div>
 
         <div className="contract-strip">
           <div>
+            <strong>USAF Prime</strong>
+            <span>
+              Prime purchase-order awards — Department of the Air Force,
+              Directorate of Contracting. Performed. Delivered. Closed.
+            </span>
+          </div>
+          <div>
             <strong>SDVOSB</strong>
-            <span>Service-Disabled Veteran-Owned Small Business</span>
-          </div>
-          <div>
-            <strong>CAGE 61HR4</strong>
-            <span>Commercial and Government Entity Code</span>
-          </div>
-          <div>
-            <strong>DUNS 962497710</strong>
-            <span>Unique Entity Identification</span>
+            <span>
+              Service-Disabled Veteran-Owned Small Business — set-aside
+              eligible, CAGE 61HR4, DUNS 962497710.
+            </span>
           </div>
           <div>
             <strong>Since 2010</strong>
-            <span>Supporting authorized DOD RDT&amp;E programs</span>
+            <span>
+              Sixteen years sourcing denied-access foreign materiel — through
+              supplier networks that cannot be built quickly.
+            </span>
+          </div>
+          <div>
+            <strong>Audit-Ready</strong>
+            <span>
+              DFARS-compliant logistics, U.S.-flag carriage, sealed-box
+              inspection discipline, documentation that survives review.
+            </span>
           </div>
         </div>
       </section>
 
       <section className="home-section home-cta">
-        <h2>Send authorized sourcing inquiries directly to UAM.</h2>
+        <h2>If it can be lawfully acquired, UAM will find the path.</h2>
         <div className="hero-actions">
           <button className="accent-button" type="button" onClick={openInquiry}>
-            Open Procurement Inquiry
+            Submit RFQ
           </button>
           <button
             className="outline-button"
@@ -632,38 +756,43 @@ function CapabilitiesPage() {
       <div className="page-heading">
         <p className="kicker">Capabilities</p>
 
-        <h1>Discreet procurement support for difficult foreign materiel.</h1>
+        <h1>We do one thing: acquire what programs can't reach.</h1>
 
         <p>
-          UAM supports government and prime-contractor requirements where
-          access, supplier coordination, documentation, discretion, and lawful
-          sourcing matter more than volume.
+          UAM is not a distributor and not a broker chain. It is a single-point
+          acquisition capability for foreign-origin defense materiel where
+          access, verification, documentation, and lawful transfer are the
+          entire problem — and where a prime contractor's accountability has to
+          sit with one name.
         </p>
       </div>
 
       <div className="capability-grid">
-        <FeatureCard icon={ShieldCheck} title="Foreign Materiel Procurement">
-          Sourcing hard-to-procure foreign-origin military systems, components,
-          and technologies for authorized U.S. Department of Defense research
-          and evaluation requirements.
+        <FeatureCard icon={ShieldCheck} title="Denied-Access Acquisition">
+          Locating and acquiring foreign-origin systems, components, and
+          technologies with limited or restricted availability — for authorized
+          U.S. DOD research, development, test, evaluation, and exploitation
+          programs.
         </FeatureCard>
 
-        <FeatureCard icon={Radar} title="Radar & Air Defense Focus">
-          Specialized support for radar systems, air-defense platforms,
-          associated components, and technical materiel relevant to testing,
-          analysis, and exploitation programs.
+        <FeatureCard icon={Crosshair} title="Ukrainian Unmanned Pipeline">
+          Direct access to an unmanned-systems ecosystem validated by years of
+          continuous combat employment — interceptors, long-range strike,
+          tactical ISR, and naval unmanned systems — through supplier
+          relationships that predate the current demand.
         </FeatureCard>
 
-        <FeatureCard icon={FileCheck2} title="Documentation & Compliance">
-          Procurement activity is structured around lawful government
-          requirements, documentation, sanctions compliance, export-control
-          rules, and end-use controls.
+        <FeatureCard icon={FileCheck2} title="Compliance & Documentation">
+          Every acquisition is structured around U.S. law, sanctions
+          restrictions, export-control rules, end-use controls, and government
+          authorization — with the documentation trail built in from first
+          contact, not reconstructed afterward.
         </FeatureCard>
 
-        <FeatureCard icon={BriefcaseBusiness} title="Supplier Coordination">
-          Support for locating sources, validating availability, coordinating
-          communication, and preparing procurement-relevant information for
-          authorized parties.
+        <FeatureCard icon={BriefcaseBusiness} title="Logistics That Survive Audit">
+          DFARS 252.247-7023 U.S.-flag carriage, sealed-box inspection through
+          hazardous-materiel channels, and U.S. air-transport preference for
+          ordnance — delivery discipline learned on real government contracts.
         </FeatureCard>
       </div>
     </section>
@@ -671,42 +800,49 @@ function CapabilitiesPage() {
 }
 
 function SystemsPage() {
-  const [activeTab, setActiveTab] = React.useState("All Categories");
+  const [activeCat, setActiveCat] = React.useState("interceptors");
 
-  const visibleSystems =
-    activeTab === "All Categories"
-      ? systems
-      : systems.filter((item) => item.category === activeTab);
-
-  const showComponents =
-    activeTab === "All Categories" || activeTab === "Components & Spares";
+  const current = categories.find((c) => c.id === activeCat);
+  const visibleSystems = systems.filter((s) => s.category === activeCat);
 
   return (
     <section className="page-frame systems-page">
       <div className="page-heading compact">
-        <p className="kicker">Systems of Interest</p>
+        <p className="kicker">Systems Desk</p>
 
-        <h1>Foreign-Origin Defense Systems</h1>
+        <h1>Focused acquisition lines. Not a warehouse.</h1>
 
         <p>
-          UAM supports authorized procurement requirements involving
-          foreign-origin military systems, components, and technologies for
-          research, testing, evaluation, training, and analysis programs.
+          UAM concentrates on the foreign-origin systems U.S. programs are
+          actually chasing — one line at a time. Select a line below. Specific
+          configurations, availability, and pricing are discussed only with
+          authorized parties.
         </p>
       </div>
 
-      <div className="systems-tabs" aria-label="System categories">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            className={activeTab === tab ? "active" : ""}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="cat-selector" aria-label="Acquisition lines">
+        {categories.map((cat) => {
+          const Icon = cat.icon;
+          return (
+            <button
+              key={cat.id}
+              type="button"
+              className={`cat-tile ${activeCat === cat.id ? "active" : ""}`}
+              onClick={() => setActiveCat(cat.id)}
+            >
+              <Icon size={22} />
+              <span>{cat.name}</span>
+            </button>
+          );
+        })}
       </div>
+
+      {current && (
+        <div className="cat-intro">
+          <p className="cat-tag">{current.tag}</p>
+          <p className="cat-blurb">{current.blurb}</p>
+        </div>
+      )}
 
       <div className="systems-gallery">
         {visibleSystems.map((item) => (
@@ -720,7 +856,7 @@ function SystemsPage() {
           </article>
         ))}
 
-        {showComponents && <ComponentsCard />}
+        {activeCat === "platforms" && <ComponentsCard />}
       </div>
 
       <p className="systems-note">
@@ -756,14 +892,15 @@ function ContractingPage() {
       <div className="page-heading">
         <p className="kicker">Compliance / Contracting</p>
 
-        <h1>Built around lawful sourcing and clean documentation.</h1>
+        <h1>Small enough to move. Disciplined enough to prime.</h1>
 
         <p>
-          UAM supports authorized procurement requirements for research,
-          development, testing, evaluation, exploitation, and training support.
-          All sourcing is subject to applicable U.S. law, sanctions
-          restrictions, export-control rules, end-use controls, and government
-          authorization requirements.
+          UAM holds prime past performance with the Department of the Air Force
+          and supports authorized requirements for research, development, test,
+          evaluation, exploitation, and training. All sourcing is subject to
+          applicable U.S. law, sanctions restrictions, export-control rules,
+          end-use controls, and government authorization requirements — without
+          exception, and without being asked twice.
         </p>
       </div>
 
@@ -776,6 +913,7 @@ function ContractingPage() {
             <li>CAGE Code: 61HR4</li>
             <li>DUNS: 962497710</li>
             <li>Service Disabled Veteran-Owned Small Business</li>
+            <li>Prime Past Performance: Department of the Air Force</li>
             <li>Capability Statement Available Upon Request</li>
           </ul>
         </div>
@@ -799,13 +937,13 @@ function ContactPage({ openInquiry }) {
       <div className="page-heading contact-heading">
         <p className="kicker">Contact</p>
 
-        <h1>Send authorized sourcing inquiries directly to UAM.</h1>
+        <h1>One inquiry. One principal. A direct answer.</h1>
 
         <p>
-          For controlled or sensitive sourcing requests, contact UAM directly
-          with a concise RFQ, system description, or capability discussion
-          request. Inquiries should relate to authorized government, contractor,
-          research, testing, or evaluation requirements.
+          Send a concise RFQ, system description, or capability discussion
+          request. It is read by the owner, not a sales queue. Inquiries should
+          relate to authorized government, contractor, research, test, or
+          evaluation requirements.
         </p>
       </div>
 
@@ -840,7 +978,7 @@ function ContactPage({ openInquiry }) {
 
       <div className="contact-form-cta">
         <button className="accent-button" type="button" onClick={openInquiry}>
-          Open Procurement Inquiry Form
+          Submit RFQ
         </button>
       </div>
     </section>

@@ -1275,3 +1275,155 @@ footer {
   .cine-hero h1 { font-size: clamp(2.5rem, 11vw, 3.4rem); }
   .main-nav { display: none; }
 }
+
+/* ============================================================
+   v3 — mono nav, differentiators, focus tiles, category desk
+   ============================================================ */
+
+.main-nav button,
+.nav-cta,
+.kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.main-nav button { font-size: 0.82rem; }
+.nav-cta { font-size: 0.8rem; }
+.kicker { font-size: 0.78rem; }
+
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.diff-card {
+  border: 1px solid var(--line-blue);
+  border-radius: 12px;
+  background: rgba(7, 16, 28, 0.7);
+}
+
+.diff-card h3 { font-size: 1.22rem; }
+
+.focus-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.focus-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 26px 24px;
+  border: 1px solid var(--line-blue);
+  border-radius: 12px;
+  background: rgba(7, 16, 28, 0.7);
+  color: var(--text);
+  text-align: left;
+  transition: border-color 0.2s ease, transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.focus-tile:hover {
+  border-color: var(--accent);
+  background: rgba(12, 26, 44, 0.85);
+  transform: translateY(-3px);
+}
+
+.focus-tile svg { color: var(--accent); }
+
+.focus-tile strong {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.focus-tile span {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Systems desk: category selector */
+
+.cat-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 56px;
+  margin: 8px 0 26px;
+}
+
+.cat-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: rgba(7, 16, 28, 0.55);
+  color: var(--muted);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.04rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.cat-tile svg { color: var(--soft); flex-shrink: 0; }
+
+.cat-tile:hover {
+  color: var(--text);
+  border-color: rgba(90, 162, 240, 0.5);
+}
+
+.cat-tile.active {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(16, 36, 60, 0.85);
+  box-shadow: 0 10px 36px rgba(20, 60, 110, 0.35);
+}
+
+.cat-tile.active svg { color: var(--accent-strong); }
+
+.cat-intro {
+  padding: 0 56px;
+  margin-bottom: 30px;
+  max-width: 980px;
+}
+
+.cat-tag {
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cat-blurb {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 1080px) {
+  .diff-grid { grid-template-columns: 1fr; }
+  .focus-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cat-selector { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .focus-tiles { grid-template-columns: 1fr; }
+  .cat-selector { grid-template-columns: 1fr; padding: 0 24px; }
+  .cat-intro { padding: 0 24px; }
+}
