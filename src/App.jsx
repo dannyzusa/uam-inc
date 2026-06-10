@@ -15,6 +15,30 @@ import {
   PackageCheck,
 } from "lucide-react";
 
+/*
+  Hero footage: NASA Scientific Visualization Studio #5615 — "NISAR satellite orbit"
+  (svs.gsfc.nasa.gov/5615). NASA imagery is in the public domain; courtesy credit:
+  NASA's Scientific Visualization Studio / Kel Elkins (STC).
+  The JS loop window below replays only 0–20.5 s so the multi-satellite fleet
+  pull-back at ~21 s never appears.
+
+  To self-host a trimmed loop later, run locally:
+    ffmpeg -i nisar_orbit_1080p60.mp4 -t 20.5 -an -vf "scale=1920:-2" \
+      -c:v libx264 -preset slow -crf 23 -movflags +faststart public/videos/uam-hero-loop.mp4
+  then change HERO_VIDEO_SRC to "/videos/uam-hero-loop.mp4".
+
+  Selected systems imagery via Wikimedia Commons contributors
+  (Antonov An-196 Liutyi in Kouvola; UKRSPECSYSTEMS PD-2 photo 1 — free licenses,
+  see the file pages on commons.wikimedia.org for author and license details).
+*/
+
+const HERO_VIDEO_SRC =
+  "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005615/nisar_orbit_1080p60.mp4";
+const HERO_POSTER =
+  "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005615/nisar_orbit.02415_preview.jpg";
+const LOOP_START = 0;
+const LOOP_END = 20.5;
+
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Capabilities", path: "/capabilities" },
@@ -47,18 +71,21 @@ const systems = [
     subtitle: "Mobile Low-Altitude Radar",
     category: "Radar Systems",
     image: "/images/system-radar-podlet.jpg",
+    desc: "Low-altitude surveillance radar for detection of aircraft, helicopters, and cruise missiles at terrain-masked approach profiles.",
   },
   {
     title: "Nebo-M Radar",
     subtitle: "Mobile Multiband Radar System",
     category: "Radar Systems",
     image: "/images/system-radar-nebo.jpg",
+    desc: "Multiband (VHF/L/X) radar complex with counter-low-observable detection roles; high-value subject for signature and waveform exploitation.",
   },
   {
     title: "P-18 Radar Family",
     subtitle: "Legacy / Modernized Radar Systems",
     category: "Radar Systems",
     image: "/images/system-radar-p18.jpg",
+    desc: "VHF early-warning radar family (P-11 / P-18 / P-19 lineage) with modernized digital variants and complete 4-year ZIP-kit support.",
   },
 
   {
@@ -66,12 +93,21 @@ const systems = [
     subtitle: "Air Defense Platforms",
     category: "Air Defense",
     image: "/images/system-airdefense-buk.jpg",
+    desc: "9K37-series medium-range SAM systems, including 9A310/9A39 vehicles, fire-control radars, and associated missile rounds.",
   },
   {
     title: "Tor / Short-Range AD",
     subtitle: "Mobile Air Defense Systems",
     category: "Air Defense",
     image: "/images/system-airdefense-tor.jpg",
+    desc: "9A330/9A331 Tor point-defense systems with 9M331 missiles or 9M334 missile modules for evaluation and threat replication.",
+  },
+  {
+    title: "ZSU-23-4M Shilka",
+    subtitle: "Self-Propelled AA Gun System",
+    category: "Air Defense",
+    image: "/images/system-airdefense-shilka.jpg",
+    desc: "Modernized self-propelled anti-aircraft system with quad 23 mm guns and radar fire control; related 2K22M Tunguska support available.",
   },
 
   {
@@ -79,12 +115,14 @@ const systems = [
     subtitle: "Main Battle Tank Platforms",
     category: "Armored Platforms",
     image: "/images/system-armor-t90.jpg",
+    desc: "Modern MBT platforms and subsystems; T-72M1/M1A and T-80BV/U-series modernized vehicles also supported.",
   },
   {
     title: "BMP-3",
     subtitle: "Infantry Fighting Vehicle",
     category: "Armored Platforms",
     image: "/images/system-bmp3.jpg",
+    desc: "Amphibious IFV with 100 mm / 30 mm combined armament; BTR-80, BTR-3E1, and BTR-4 wheeled APCs also supported.",
   },
 
   {
@@ -92,18 +130,21 @@ const systems = [
     subtitle: "Upgraded Variants",
     category: "Aircraft / Helicopters",
     image: "/images/system-aircraft.jpg",
+    desc: "Airframes, engines, and N001 pulse-Doppler radar sets with track-while-scan and look-down/shoot-down capability.",
   },
   {
     title: "MiG-29 Family",
     subtitle: "Aircraft Platforms & Systems",
     category: "Aircraft / Helicopters",
     image: "/images/system-aircraft-mig29.jpg",
+    desc: "Aircraft, engines, radar, and critical components for test, evaluation, and aggressor-support requirements.",
   },
   {
     title: "Mi-24 / Mi-35",
     subtitle: "Hind-Series Helicopters",
     category: "Aircraft / Helicopters",
     image: "/images/system-hind.jpg",
+    desc: "Hind-series attack helicopters, engines, dynamic components, and spares packages.",
   },
 
   {
@@ -111,13 +152,97 @@ const systems = [
     subtitle: "Control, Sensor & Signal Systems",
     category: "Electronics",
     image: "/images/system-electronics.jpg",
+    desc: "Fire-control, sensor, signal-processing, and command-control-communication blocks for former Soviet-Bloc systems.",
   },
 
+  {
+    title: "AN-196 Liutyi",
+    subtitle: "Long-Range Strike UAS",
+    category: "Drones / UAS",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Antonov_An-196_Liutyi_in_Kouvola.jpg/1280px-Antonov_An-196_Liutyi_in_Kouvola.jpg",
+    fallback: "/images/system-drone-liutyi.jpg",
+    desc: "Ukrainian deep-strike one-way attack UAS; 1,000–2,000 km operational range with a 50–75 kg warhead and INS / satellite guidance.",
+  },
+  {
+    title: "Fire Point FP-1",
+    subtitle: "Long-Range Strike UAS",
+    category: "Drones / UAS",
+    image: "/images/system-drone-fp1.jpg",
+    desc: "Mass-produced Ukrainian one-way attack UAS; up to 1,600 km range with a 60–120 kg modular warhead and ECCM-hardened guidance.",
+  },
+  {
+    title: "Shark UAS",
+    subtitle: "Ukrspecsystems ISR Platform",
+    category: "Drones / UAS",
+    image: "/images/system-drone-shark.jpg",
+    desc: "Catapult-launched ISR and fire-correction UAS; EW-resistant AES-256 datalink to 60–80 km, 30× EO payload, parachute recovery.",
+  },
+  {
+    title: "PD-2",
+    subtitle: "Ukrspecsystems VTOL / Fixed-Wing UAS",
+    category: "Drones / UAS",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/UKRSPECSYSTEMS_PD-2_photo_1.jpg/1280px-UKRSPECSYSTEMS_PD-2_photo_1.jpg",
+    fallback: "/images/system-drone-pd2.jpg",
+    desc: "Multi-role UAS with modular VTOL conversion; up to 10 h endurance, ~200 km datalink, ISR and light-strike payload options.",
+  },
+  {
+    title: "Leleka-100",
+    subtitle: "DeViRo Tactical Reconnaissance UAV",
+    category: "Drones / UAS",
+    image: "/images/system-drone-leleka.jpg",
+    desc: "Proven tactical reconnaissance UAV in wide Ukrainian service; basis for the RAM II loitering-munition family.",
+  },
+  {
+    title: "RAM II / RAM-2X",
+    subtitle: "Loitering Munition",
+    category: "Drones / UAS",
+    image: "/images/system-drone-ramii.jpg",
+    desc: "Loitering munition with 3 kg thermobaric, shaped-charge, or HE-frag warheads; RAM-2X extends reach beyond 100 km under EW conditions.",
+  },
+  {
+    title: "Punisher",
+    subtitle: "UA Dynamics Strike UAS",
+    category: "Drones / UAS",
+    image: "/images/system-drone-punisher.jpg",
+    desc: "Reusable low-signature strike UAS employed by Ukrainian special operations forces for precision drops behind the line of contact.",
+  },
+  {
+    title: "A1-CM Furia",
+    subtitle: "Athlon Avia Reconnaissance UAV",
+    category: "Drones / UAS",
+    image: "/images/system-drone-furia.jpg",
+    desc: "Tactical ISR and artillery fire-correction UAV in Ukrainian service since 2014; flying-wing airframe with encrypted datalink.",
+  },
+  {
+    title: "Spectator-M1",
+    subtitle: "Tactical ISR UAV",
+    category: "Drones / UAS",
+    image: "/images/system-drone-spectator.jpg",
+    desc: "Hand- and catapult-launched tactical reconnaissance UAV with parachute recovery for contested-environment ISR.",
+  },
   {
     title: "Orlan-10",
     subtitle: "Foreign-Origin ISR UAS",
     category: "Drones / UAS",
     image: "/images/system-drone-orlan10.jpg",
+    desc: "Russian-origin ISR and EW-relay UAS; airframes and component sets relevant to exploitation and counter-UAS development.",
+  },
+
+  {
+    title: "Magura V5",
+    subtitle: "Multipurpose Unmanned Surface Vessel",
+    category: "Naval / USV",
+    image: "/images/system-usv-magura.jpg",
+    desc: "Ukrainian multipurpose USV; ~800 km range at high sprint speeds with a payload sized to defeat surface combatants.",
+  },
+  {
+    title: "Sea Baby",
+    subtitle: "Heavy-Payload Unmanned Surface Vessel",
+    category: "Naval / USV",
+    image: "/images/system-usv-seababy.jpg",
+    desc: "Long-range heavy-payload USV class associated with strikes on port infrastructure and stationary naval targets.",
   },
 ];
 
@@ -128,8 +253,9 @@ const tabs = [
   "Armored Platforms",
   "Aircraft / Helicopters",
   "Electronics",
-  "Components & Spares",
   "Drones / UAS",
+  "Naval / USV",
+  "Components & Spares",
 ];
 
 const componentSpares = [
@@ -186,7 +312,7 @@ export default function App() {
   const page = normalizePath(path);
 
   return (
-    <main className="site-shell">
+    <main className={`site-shell ${page === "/" ? "is-home" : "is-inner"}`}>
       <Header
         page={page}
         navigate={navigate}
@@ -217,8 +343,19 @@ export default function App() {
 }
 
 function Header({ page, navigate, openInquiry }) {
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = scrolled || page !== "/";
+
   return (
-    <header className="site-header">
+    <header className={`site-header ${solid ? "scrolled" : ""}`}>
       <button
         className="brand-link"
         type="button"
@@ -252,12 +389,95 @@ function Header({ page, navigate, openInquiry }) {
   );
 }
 
+function HeroVideo() {
+  const videoRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Replay only the single-satellite radar pass; never reach the
+    // multi-satellite fleet pull-back at ~21 s.
+    const resetLoop = () => {
+      video.currentTime = LOOP_START;
+      const playing = video.play();
+      if (playing && typeof playing.catch === "function") {
+        playing.catch(() => {});
+      }
+    };
+
+    const onTimeUpdate = () => {
+      if (video.currentTime >= LOOP_END) resetLoop();
+    };
+
+    const onEnded = () => resetLoop();
+
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("ended", onEnded);
+
+    // timeupdate only fires ~4 Hz; a frame callback catches the boundary
+    // precisely so the fleet shot can never flash on screen.
+    let frameHandle = null;
+    const onFrame = () => {
+      if (video.currentTime >= LOOP_END - 0.08) resetLoop();
+      if (typeof video.requestVideoFrameCallback === "function") {
+        frameHandle = video.requestVideoFrameCallback(onFrame);
+      }
+    };
+    if (typeof video.requestVideoFrameCallback === "function") {
+      frameHandle = video.requestVideoFrameCallback(onFrame);
+    }
+
+    return () => {
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("ended", onEnded);
+      if (
+        frameHandle !== null &&
+        typeof video.cancelVideoFrameCallback === "function"
+      ) {
+        video.cancelVideoFrameCallback(frameHandle);
+      }
+    };
+  }, []);
+
+  return (
+    <div className="hero-media" aria-hidden="true">
+      <video
+        ref={videoRef}
+        className="hero-video"
+        src={HERO_VIDEO_SRC}
+        poster={HERO_POSTER}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+      />
+      <div className="hero-grade" />
+      <div className="hero-grain" />
+      <div className="hero-vignette" />
+    </div>
+  );
+}
+
 function HomePage({ navigate, openInquiry }) {
   return (
-    <section className="page-frame home-frame">
-      <div className="home-main-grid">
+    <>
+      <section className="cine-hero">
+        <HeroVideo />
+
+        <div className="hero-hud" aria-hidden="true">
+          <span className="hud-dot" />
+          <span>Radar Pass · Live</span>
+          <span className="hud-sep">|</span>
+          <span>ALT 747 KM</span>
+          <span className="hud-sep">|</span>
+          <span>VEL 26,900 KM/H</span>
+          <span className="hud-sep">|</span>
+          <span>SRC · L-BAND SAR</span>
+        </div>
+
         <div className="hero-copy-block">
-          <p className="gold-kicker">
+          <p className="kicker">
             Specialized Procurement for U.S. Department of Defense
           </p>
 
@@ -272,7 +492,7 @@ function HomePage({ navigate, openInquiry }) {
           </p>
 
           <div className="hero-actions">
-            <button className="gold-button" type="button" onClick={openInquiry}>
+            <button className="accent-button" type="button" onClick={openInquiry}>
               Contact Procurement
             </button>
 
@@ -285,24 +505,124 @@ function HomePage({ navigate, openInquiry }) {
             </button>
           </div>
         </div>
-      </div>
 
-      <div className="home-capability-strip">
-        {capabilities.map((item) => {
-          const Icon = item.icon;
+        <div className="hero-credentials" aria-label="Credentials">
+          <span>Service-Disabled Veteran-Owned Small Business</span>
+          <span className="hud-sep">|</span>
+          <span>CAGE 61HR4</span>
+          <span className="hud-sep">|</span>
+          <span>DUNS 962497710</span>
+          <span className="hud-sep">|</span>
+          <span>Founded 2010</span>
+        </div>
+      </section>
 
-          return (
-            <article key={item.title} className="strip-card">
-              <Icon size={34} />
+      <section className="home-section" id="capabilities">
+        <div className="section-head">
+          <span className="section-index">01</span>
+          <h2>Capabilities</h2>
+        </div>
+
+        <div className="home-capability-strip">
+          {capabilities.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title} className="strip-card">
+                <Icon size={34} />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="home-section" id="systems">
+        <div className="section-head">
+          <span className="section-index">02</span>
+          <h2>Systems of Interest</h2>
+          <button
+            className="section-link"
+            type="button"
+            onClick={() => navigate("/systems")}
+          >
+            View Full Catalog →
+          </button>
+        </div>
+
+        <div className="home-systems-rail">
+          {[systems[12], systems[14], systems[1], systems[22]].map((item) => (
+            <article className="system-card" key={item.title}>
+              <SystemImage item={item} />
               <div>
                 <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <p>{item.subtitle}</p>
               </div>
             </article>
-          );
-        })}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section" id="contracting">
+        <div className="section-head">
+          <span className="section-index">03</span>
+          <h2>Contracting</h2>
+        </div>
+
+        <div className="contract-strip">
+          <div>
+            <strong>SDVOSB</strong>
+            <span>Service-Disabled Veteran-Owned Small Business</span>
+          </div>
+          <div>
+            <strong>CAGE 61HR4</strong>
+            <span>Commercial and Government Entity Code</span>
+          </div>
+          <div>
+            <strong>DUNS 962497710</strong>
+            <span>Unique Entity Identification</span>
+          </div>
+          <div>
+            <strong>Since 2010</strong>
+            <span>Supporting authorized DOD RDT&amp;E programs</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section home-cta">
+        <h2>Send authorized sourcing inquiries directly to UAM.</h2>
+        <div className="hero-actions">
+          <button className="accent-button" type="button" onClick={openInquiry}>
+            Open Procurement Inquiry
+          </button>
+          <button
+            className="outline-button"
+            type="button"
+            onClick={() => navigate("/contact")}
+          >
+            Contact Details
+          </button>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function SystemImage({ item }) {
+  const [src, setSrc] = React.useState(item.image);
+
+  return (
+    <img
+      src={src}
+      alt={item.title}
+      loading="lazy"
+      onError={() => {
+        if (item.fallback && src !== item.fallback) setSrc(item.fallback);
+      }}
+    />
   );
 }
 
@@ -310,7 +630,7 @@ function CapabilitiesPage() {
   return (
     <section className="page-frame content-page">
       <div className="page-heading">
-        <p className="gold-kicker">Capabilities</p>
+        <p className="kicker">Capabilities</p>
 
         <h1>Discreet procurement support for difficult foreign materiel.</h1>
 
@@ -364,7 +684,7 @@ function SystemsPage() {
   return (
     <section className="page-frame systems-page">
       <div className="page-heading compact">
-        <p className="gold-kicker">Systems of Interest</p>
+        <p className="kicker">Systems of Interest</p>
 
         <h1>Foreign-Origin Defense Systems</h1>
 
@@ -391,10 +711,11 @@ function SystemsPage() {
       <div className="systems-gallery">
         {visibleSystems.map((item) => (
           <article className="system-card" key={item.title}>
-            <img src={item.image} alt={item.title} />
+            <SystemImage item={item} />
             <div>
               <h3>{item.title}</h3>
               <p>{item.subtitle}</p>
+              {item.desc && <p className="system-desc">{item.desc}</p>}
             </div>
           </article>
         ))}
@@ -433,7 +754,7 @@ function ContractingPage() {
   return (
     <section className="page-frame content-page">
       <div className="page-heading">
-        <p className="gold-kicker">Compliance / Contracting</p>
+        <p className="kicker">Compliance / Contracting</p>
 
         <h1>Built around lawful sourcing and clean documentation.</h1>
 
@@ -476,7 +797,7 @@ function ContactPage({ openInquiry }) {
   return (
     <section className="page-frame content-page contact-page">
       <div className="page-heading contact-heading">
-        <p className="gold-kicker">Contact</p>
+        <p className="kicker">Contact</p>
 
         <h1>Send authorized sourcing inquiries directly to UAM.</h1>
 
@@ -518,7 +839,7 @@ function ContactPage({ openInquiry }) {
       </div>
 
       <div className="contact-form-cta">
-        <button className="gold-button" type="button" onClick={openInquiry}>
+        <button className="accent-button" type="button" onClick={openInquiry}>
           Open Procurement Inquiry Form
         </button>
       </div>
@@ -549,6 +870,14 @@ function ContactCard({ icon: Icon, title, text, href }) {
 }
 
 function InquiryModal({ close }) {
+  React.useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [close]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -561,20 +890,21 @@ function InquiryModal({ close }) {
 
     const subject = encodeURIComponent("UAM Sourcing Inquiry");
     const body = encodeURIComponent(
-      `Name: ${name}
-Organization: ${organization}
-Email: ${email}
-Phone: ${phone}
-
-Message:
-${message}`
+      `Name: ${name}\nOrganization: ${organization}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
     );
 
     window.location.href = `mailto:Dan.Zugrav@uam-inc.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true">
+    <div
+      className="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) close();
+      }}
+    >
       <div className="inquiry-modal">
         <button
           className="modal-close"
@@ -586,7 +916,7 @@ ${message}`
         </button>
 
         <div className="form-header">
-          <p className="gold-kicker">Procurement Inquiry</p>
+          <p className="kicker">Procurement Inquiry</p>
           <h2>Submit a sourcing request</h2>
           <p>
             Provide contact information and a concise description of the
@@ -636,7 +966,7 @@ ${message}`
             />
           </label>
 
-          <button className="gold-button form-submit" type="submit">
+          <button className="accent-button form-submit" type="submit">
             <Send size={17} /> Prepare Inquiry Email
           </button>
         </form>
@@ -659,7 +989,7 @@ function Footer() {
   return (
     <footer>
       © {new Date().getFullYear()} United Acquisition Management, Inc. All
-      rights reserved. Real systems. Real capability. Authorized use only.
+      rights reserved. Sourcing · Licensing · Delivery.
     </footer>
   );
 }
