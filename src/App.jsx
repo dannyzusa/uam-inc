@@ -231,8 +231,10 @@ const systems = [
     title: "A1-CM Furia",
     subtitle: "Athlon Avia Reconnaissance UAV",
     category: "isr",
-    image: "/images/system-drone-furia.jpg",
-    desc: "Tactical ISR and artillery fire-correction UAV in continuous service since 2014; a decade of iteration against real electronic warfare.",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Humvee_and_Furia_UAV%2C_Kyiv_2021%2C_12.jpg/1280px-Humvee_and_Furia_UAV%2C_Kyiv_2021%2C_12.jpg",
+    fallback: "/images/system-drone-furia.jpg",
+    desc: "Tactical ISR and artillery fire-correction UAV in continuous service since 2014; the A1-CMX variant adds laser designation for precision-guided artillery.",
   },
 
   /* ---- Radar & Air Defense ---- */
@@ -278,6 +280,33 @@ const systems = [
     image: "/images/system-airdefense-shilka.jpg",
     desc: "Modernized self-propelled anti-aircraft system with quad 23 mm guns and radar fire control; related 2K22M Tunguska support available.",
   },
+  {
+    title: "9A33BM3 Osa",
+    subtitle: "SA-8 Modernized SAM System",
+    category: "radar",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ukrainian_9k33_Osa_SAMS_during_the_Independence_Day_parade_in_Kiev_2014_IMG_7671_02.JPG/1280px-Ukrainian_9k33_Osa_SAMS_during_the_Independence_Day_parade_in_Kiev_2014_IMG_7671_02.JPG",
+    fallback: "/images/system-ad-osa.jpg",
+    desc: "Modernized and digitized 9A33BM3 fighting vehicles — a UAM founding capability — delivered with complete 4-year ZIP-kits; 1S91M2 SURN support in the same line.",
+  },
+  {
+    title: "S-125 Pechora-2",
+    subtitle: "SA-3 Modernized Fire Unit",
+    category: "radar",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Pechora-2M_-_missile_launcher_2.jpg/1280px-Pechora-2M_-_missile_launcher_2.jpg",
+    fallback: "/images/system-ad-pechora.jpg",
+    desc: "Complete SA-3 fire-unit systems including the Pechora-2 modernization — improved range, multi-target engagement, trailed launcher, and electro-optical tracking.",
+  },
+  {
+    title: "Igla MANPADS Family",
+    subtitle: "SA-16 / SA-18 Man-Portable SAM",
+    category: "radar",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/9K38_IGLA_%284968730444%29.jpg/1280px-9K38_IGLA_%284968730444%29.jpg",
+    fallback: "/images/system-ad-igla.jpg",
+    desc: "9K310 Igla-1 (SA-16) and 9K38 Igla (SA-18) man-portable systems with two-color IR seekers, plus Strela-series MANPADS — core threat-replication hardware.",
+  },
 
   /* ---- Platforms & Components ---- */
   {
@@ -286,6 +315,20 @@ const systems = [
     category: "platforms",
     image: "/images/system-armor-t90.jpg",
     desc: "Modern MBT platforms and subsystems; T-72M1/M1A and T-80BV/U-series modernized vehicles also supported.",
+  },
+  {
+    title: "T-80 Family",
+    subtitle: "Main Battle Tank Platforms",
+    category: "platforms",
+    image: "/images/system-armor-t80.jpg",
+    desc: "T-80BV and T-80U-series modernized main battle tanks — gas-turbine MBT platforms, subsystems, and spares.",
+  },
+  {
+    title: "BTR Series",
+    subtitle: "Wheeled Armored Personnel Carriers",
+    category: "platforms",
+    image: "/images/system-armor-btr80.jpg",
+    desc: "BTR-80, BTR-3E1, and latest-technology BTR-4 armored personnel carriers; Dozor-class light armor also supported.",
   },
   {
     title: "BMP-3",
@@ -298,7 +341,7 @@ const systems = [
     title: "Su-27 Family",
     subtitle: "Upgraded Variants",
     category: "platforms",
-    image: "/images/system-aircraft.jpg",
+    image: "/images/system-aircraft-su27.jpg",
     desc: "Airframes, engines, and N001 pulse-Doppler radar sets with track-while-scan and look-down/shoot-down capability.",
   },
   {
@@ -312,8 +355,15 @@ const systems = [
     title: "Mi-24 / Mi-35",
     subtitle: "Hind-Series Helicopters",
     category: "platforms",
-    image: "/images/system-hind.jpg",
+    image: "/images/system-hind-mi24.jpg",
     desc: "Hind-series attack helicopters, engines, dynamic components, and spares packages.",
+  },
+  {
+    title: "Aviation Engines & Components",
+    subtitle: "Su-27 / MiG-29 / Mi-24 Lines",
+    category: "platforms",
+    image: "/images/system-aircraft-mi24-component.jpg",
+    desc: "Engines, radar sets, weapons subsystems, and critical components for Russian-origin fixed- and rotary-wing aircraft — the spares depth that keeps test fleets flying.",
   },
   {
     title: "Radar Electronics",
