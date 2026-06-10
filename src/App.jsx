@@ -12,7 +12,6 @@ import {
   X,
   PackageCheck,
   Crosshair,
-  Ship,
   Plane,
   Cpu,
   UserCheck,
@@ -108,14 +107,6 @@ const categories = [
     tag: "Battle-tested reconnaissance and loitering munitions",
     blurb:
       "ISR and loitering-munition platforms matured through years of electronic warfare at the line of contact — datalinks, optics, and counter-jamming approaches with an operational track record few systems can match.",
-  },
-  {
-    id: "naval",
-    name: "Naval Unmanned Systems",
-    icon: Ship,
-    tag: "Surface and underwater unmanned vehicles",
-    blurb:
-      "The unmanned surface and underwater vehicles that reshaped the naval picture in the Black Sea — from one-way attack USVs to missile-armed and interceptor-carrier variants now exercising with NATO partners.",
   },
   {
     id: "radar",
@@ -242,36 +233,6 @@ const systems = [
     category: "isr",
     image: "/images/system-drone-furia.jpg",
     desc: "Tactical ISR and artillery fire-correction UAV in continuous service since 2014; a decade of iteration against real electronic warfare.",
-  },
-
-  /* ---- Naval Unmanned ---- */
-  {
-    title: "Magura V5",
-    subtitle: "Multipurpose Unmanned Surface Vessel",
-    category: "naval",
-    image: "/images/system-usv-magura.jpg",
-    desc: "The USV widely credited with successful engagements of warships at sea — ~800 km range at high sprint speed with a payload sized for surface combatants.",
-  },
-  {
-    title: "Magura V7",
-    subtitle: "Missile / Interceptor-Carrier USV",
-    category: "naval",
-    image: "/images/system-usv-maguraV7.jpg",
-    desc: "Missile-armed evolution of the Magura line, exercised with NATO at REPMUS; 2026 variants launch interceptor drones from deck containers.",
-  },
-  {
-    title: "Sea Baby",
-    subtitle: "Heavy-Payload Unmanned Surface Vessel",
-    category: "naval",
-    image: "/images/system-usv-seababy.jpg",
-    desc: "Long-range heavy-payload USV class associated with strikes on port infrastructure and stationary naval targets.",
-  },
-  {
-    title: "Toloka TLK",
-    subtitle: "Underwater Strike Vehicle Family",
-    category: "naval",
-    image: "/images/system-uuv-toloka.jpg",
-    desc: "Emerging family of AI-assisted underwater strike vehicles spanning man-portable to multi-ton classes; the next layer of the unmanned naval threat picture.",
   },
 
   /* ---- Radar & Air Defense ---- */
@@ -550,13 +511,17 @@ function HeroVideo() {
       <video
         ref={videoRef}
         className="hero-video"
-        src={HERO_VIDEO_SRC}
         poster={HERO_POSTER}
         autoPlay
         muted
         playsInline
         preload="auto"
-      />
+      >
+        {/* Self-hosted trimmed loop; browser falls through to the NASA
+            stream automatically if the local file is absent. */}
+        <source src="/videos/uam-hero-loop.mp4" type="video/mp4" />
+        <source src={HERO_VIDEO_SRC} type="video/mp4" />
+      </video>
       <div className="hero-grade" />
       <div className="hero-grain" />
       <div className="hero-vignette" />
@@ -777,9 +742,9 @@ function CapabilitiesPage() {
 
         <FeatureCard icon={Crosshair} title="Ukrainian Unmanned Pipeline">
           Direct access to an unmanned-systems ecosystem validated by years of
-          continuous combat employment — interceptors, long-range strike,
-          tactical ISR, and naval unmanned systems — through supplier
-          relationships that predate the current demand.
+          continuous combat employment — interceptors, long-range strike, and
+          tactical ISR — through supplier relationships that predate the
+          current demand.
         </FeatureCard>
 
         <FeatureCard icon={FileCheck2} title="Compliance & Documentation">
