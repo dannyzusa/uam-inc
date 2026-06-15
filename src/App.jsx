@@ -604,7 +604,12 @@ function HomePage({ navigate, openInquiry }) {
           <h1>Military Materiel Acquisition</h1>
 
           <p>
-            We specialize in Military Procurement at the Highest Technical Level.
+            United Acquisition Management acquires hard-to-procure
+            international-origin defense materiel — combat-proven Ukrainian unmanned
+            systems, radar, and air defense — for authorized U.S. DOD research,
+            development, test, and evaluation programs. One principal. Prime
+            past performance with the U.S. Air Force. No layers between your
+            requirement and the source.
           </p>
 
           <div className="hero-actions">
@@ -766,7 +771,7 @@ function CapabilitiesPage() {
       <div className="page-heading">
         <p className="kicker">Capabilities</p>
 
-        <h1>We do one thing: acquire what programs can't reach.</h1>
+        <h1>We specialize in Military Procurement at the Highest Technical Level.</h1>
 
         <p>
           UAM is not a distributor and not a broker chain. It is a single-point
@@ -898,7 +903,7 @@ function ComponentsCard() {
 
 function ContractingPage() {
   return (
-    <section className="page-frame content-page">
+    <section className="page-frame content-page contracting-page">
       <div className="page-heading">
         <p className="kicker">Compliance / Contracting</p>
 

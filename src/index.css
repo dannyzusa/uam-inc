@@ -287,7 +287,7 @@ a {
 
 .hero-copy-block h1 {
   max-width: 780px;
-  font-size: clamp(3rem, 4.65vw, 5.15rem);
+  font-size: clamp(2.3rem, 4vw, 3.9rem);
   line-height: 0.95;
   text-shadow: 0 20px 55px rgba(0, 0, 0, 0.75);
 }
@@ -370,7 +370,7 @@ a {
 
 .page-heading h1 {
   max-width: 1050px;
-  font-size: clamp(3.3rem, 5.4vw, 6.1rem);
+  font-size: clamp(2.3rem, 4vw, 3.9rem);
   line-height: 0.95;
 }
 
@@ -428,7 +428,7 @@ a {
 }
 
 .systems-page .page-heading h1 {
-  font-size: clamp(3rem, 4.75vw, 5.35rem);
+  font-size: clamp(2.3rem, 4vw, 3.9rem);
   line-height: 0.95;
   max-width: 1080px;
 }
@@ -661,7 +661,7 @@ a {
   max-width: 980px;
   margin-left: auto;
   margin-right: auto;
-  font-size: clamp(3.1rem, 5vw, 5.7rem);
+  font-size: clamp(2.3rem, 4vw, 3.9rem);
   line-height: 0.94;
 }
 
@@ -942,7 +942,7 @@ footer {
   .page-heading h1,
   .systems-page .page-heading h1,
   .contact-page .page-heading h1 {
-    font-size: clamp(2.65rem, 14vw, 4rem);
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
   }
 
   .hero-copy-block p:not(.kicker),
@@ -1427,3 +1427,15 @@ footer {
   .cat-selector { grid-template-columns: 1fr; padding: 0 24px; }
   .cat-intro { padding: 0 24px; }
 }
+
+
+/* Contracting compact */
+.site-shell.is-inner .contracting-page { padding-top: 40px; padding-bottom: 44px; min-height: 0; }
+.contracting-page .page-heading { margin-bottom: 22px; }
+.contracting-page .page-heading p:not(.kicker) { font-size: 0.94rem; line-height: 1.55; margin-top: 14px; }
+.contracting-page .contract-layout { gap: 20px; }
+.contracting-page .facts-card { padding: 20px 24px; }
+.contracting-page .facts-card h2 { font-size: 1.7rem; margin-bottom: 14px; }
+.contracting-page .facts-card ul { font-size: 0.9rem; line-height: 1.5; }
+.contracting-page .process-grid { gap: 12px; }
+.contracting-page .process-card { min-height: 0; padding: 13px 16px; font-size: 0.92rem; }
