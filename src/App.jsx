@@ -85,6 +85,14 @@ const differentiators = [
 
 const categories = [
   {
+    id: "radar",
+    name: "Radar & Air Defense",
+    icon: Cpu,
+    tag: "Foundational international-origin sensors and SAM systems",
+    blurb:
+      "The radar and surface-to-air systems UAM has sourced since its founding — early-warning radar families, mobile SAM platforms, and the ZIP-kit depth to keep them operating through multi-year test programs.",
+  },
+  {
     id: "interceptors",
     name: "Counter-UAS Interceptors",
     icon: Crosshair,
@@ -107,14 +115,6 @@ const categories = [
     tag: "Battle-tested reconnaissance and loitering munitions",
     blurb:
       "ISR and loitering-munition platforms matured through years of electronic warfare at the line of contact — datalinks, optics, and counter-jamming approaches with an operational track record few systems can match.",
-  },
-  {
-    id: "radar",
-    name: "Radar & Air Defense",
-    icon: Cpu,
-    tag: "Foundational international-origin sensors and SAM systems",
-    blurb:
-      "The radar and surface-to-air systems UAM has sourced since its founding — early-warning radar families, mobile SAM platforms, and the ZIP-kit depth to keep them operating through multi-year test programs.",
   },
   {
     id: "platforms",
@@ -598,18 +598,13 @@ function HomePage({ navigate, openInquiry }) {
 
         <div className="hero-copy-block">
           <p className="kicker">
-            Military Materiel Acquisition · U.S. Department of Defense
+            U.S. Department of Defense
           </p>
 
-          <h1>The systems your program needs aren't in any catalog.</h1>
+          <h1>Military Materiel Acquisition</h1>
 
           <p>
-            United Acquisition Management acquires hard-to-procure
-            international-origin defense materiel — combat-proven Ukrainian unmanned
-            systems, radar, and air defense — for authorized U.S. DOD research,
-            development, test, and evaluation programs. One principal. Prime
-            past performance with the U.S. Air Force. No layers between your
-            requirement and the source.
+            We specialize in Military Procurement at the Highest Technical Level.
           </p>
 
           <div className="hero-actions">
@@ -815,7 +810,7 @@ function CapabilitiesPage() {
 }
 
 function SystemsPage() {
-  const [activeCat, setActiveCat] = React.useState("interceptors");
+  const [activeCat, setActiveCat] = React.useState("radar");
 
   const current = categories.find((c) => c.id === activeCat);
   const visibleSystems = systems.filter((s) => s.category === activeCat);
@@ -825,7 +820,7 @@ function SystemsPage() {
       <div className="page-heading compact">
         <p className="kicker">Systems Desk</p>
 
-        <h1>Focused acquisition lines. Not a warehouse.</h1>
+        <h1>Focused acquisition lines.</h1>
 
         <p>
           UAM concentrates on the international-origin systems U.S. programs are
