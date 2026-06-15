@@ -98,7 +98,7 @@ const categories = [
     icon: Plane,
     tag: "Deep-strike one-way attack platforms",
     blurb:
-      "Deep-strike systems delivering exceptional cost-per-effect at ranges beyond 1,000 km. Airframes, guidance architecture, and warhead integration relevant to exploitation, threat replication, and survivability analysis.",
+      "Deep-strike systems delivering low cost-per-effect at ranges beyond 1,000 km. Airframes, guidance architecture, and warhead integration relevant to exploitation, threat replication, and survivability analysis.",
   },
   {
     id: "isr",
@@ -481,7 +481,7 @@ function Header({ page, navigate, openInquiry }) {
         <span className="brand-logo">UAM</span>
         <span className="brand-text">
           <strong>United Acquisition Management</strong>
-          <em>Foreign Materiel Acquisition</em>
+          <em>Military Materiel Acquisition</em>
         </span>
       </button>
 
@@ -598,7 +598,7 @@ function HomePage({ navigate, openInquiry }) {
 
         <div className="hero-copy-block">
           <p className="kicker">
-            Foreign Materiel Acquisition · U.S. Department of Defense
+            Military Materiel Acquisition · U.S. Department of Defense
           </p>
 
           <h1>The systems your program needs aren't in any catalog.</h1>
@@ -717,7 +717,7 @@ function HomePage({ navigate, openInquiry }) {
           <div>
             <strong>Since 2010</strong>
             <span>
-              Sixteen years sourcing denied-access foreign materiel — through
+              Sixteen years sourcing denied-access military materiel — through
               supplier networks that cannot be built quickly.
             </span>
           </div>
@@ -1141,8 +1141,7 @@ function FeatureCard({ icon: Icon, title, children }) {
 function Footer() {
   return (
     <footer>
-      © {new Date().getFullYear()} United Acquisition Management, Inc. All
-      rights reserved. Sourcing · Licensing · Delivery.
+      © {new Date().getFullYear()} United Acquisition Management, Inc. Sourcing · Licensing · Delivery.
     </footer>
   );
 }
