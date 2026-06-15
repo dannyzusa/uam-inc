@@ -112,7 +112,7 @@ const categories = [
     id: "radar",
     name: "Radar & Air Defense",
     icon: Cpu,
-    tag: "Foundational foreign-origin sensors and SAM systems",
+    tag: "Foundational international-origin sensors and SAM systems",
     blurb:
       "The radar and surface-to-air systems UAM has sourced since its founding — early-warning radar families, mobile SAM platforms, and the ZIP-kit depth to keep them operating through multi-year test programs.",
   },
@@ -605,7 +605,7 @@ function HomePage({ navigate, openInquiry }) {
 
           <p>
             United Acquisition Management acquires hard-to-procure
-            foreign-origin defense materiel — combat-proven Ukrainian unmanned
+            international-origin defense materiel — combat-proven Ukrainian unmanned
             systems, radar, and air defense — for authorized U.S. DOD research,
             development, test, and evaluation programs. One principal. Prime
             past performance with the U.S. Air Force. No layers between your
@@ -775,7 +775,7 @@ function CapabilitiesPage() {
 
         <p>
           UAM is not a distributor and not a broker chain. It is a single-point
-          acquisition capability for foreign-origin defense materiel where
+          acquisition capability for international-origin defense materiel where
           access, verification, documentation, and lawful transfer are the
           entire problem — and where a prime contractor's accountability has to
           sit with one name.
@@ -784,7 +784,7 @@ function CapabilitiesPage() {
 
       <div className="capability-grid">
         <FeatureCard icon={ShieldCheck} title="Denied-Access Acquisition">
-          Locating and acquiring foreign-origin systems, components, and
+          Locating and acquiring international-origin systems, components, and
           technologies with limited or restricted availability — for authorized
           U.S. DOD research, development, test, evaluation, and exploitation
           programs.
@@ -828,7 +828,7 @@ function SystemsPage() {
         <h1>Focused acquisition lines. Not a warehouse.</h1>
 
         <p>
-          UAM concentrates on the foreign-origin systems U.S. programs are
+          UAM concentrates on the international-origin systems U.S. programs are
           actually chasing — one line at a time. Select a line below. Specific
           configurations, availability, and pricing are discussed only with
           authorized parties.
